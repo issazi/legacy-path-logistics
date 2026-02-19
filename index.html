@@ -3,60 +3,67 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Legacy Path Logistics | Dispatch Services</title>
-  <meta name="description" content="Reliable freight dispatch services for owner-operators and small fleets. Stay loaded, stay organized." />
+  <title>Legacy Path Logistics | Freight Dispatch Services</title>
+  <meta name="description" content="Premium freight dispatch services for owner-operators and small fleets. Stay loaded, stay organized, drive with confidence." />
 
   <style>
     :root{
-      --bg:#070c16;
+      /* Base */
+      --bg0:#050812;
+      --bg1:#070c16;
       --bg2:#0b1220;
-      --card: rgba(17,27,46,.84);
-      --muted:#9fb0d0;
-      --text:#e9efff;
+      --text:#eef4ff;
+      --muted:#a7b6d6;
 
-      /* Premium palette */
-      --accent:#22d3ee;      /* teal */
-      --accentB:#3b82f6;     /* blue */
-      --accentG:#22c55e;     /* green */
-      --accentP:#a855f7;     /* purple pop */
+      /* Premium colors */
+      --teal:#22d3ee;
+      --blue:#3b82f6;
+      --green:#22c55e;
+      --purple:#a855f7;
+      --amber:#f59e0b;
 
-      --border:rgba(255,255,255,.10);
-      --border2:rgba(255,255,255,.14);
-      --shadow: 0 18px 48px rgba(0,0,0,.42);
-      --shadowSoft: 0 10px 30px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1100px;
+      /* UI */
+      --card: rgba(16,24,44,.82);
+      --card2: rgba(16,24,44,.60);
+      --border: rgba(255,255,255,.10);
+      --border2: rgba(255,255,255,.14);
+      --shadow: 0 22px 60px rgba(0,0,0,.48);
+      --shadowSoft: 0 14px 36px rgba(0,0,0,.32);
+      --radius: 22px;
+      --max: 1180px;
 
       --focus: rgba(34,211,238,.55);
+      --glow: 0 0 0 6px rgba(34,211,238,.10), 0 0 0 1px rgba(59,130,246,.12);
     }
 
-    *{ box-sizing:border-box }
+    *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
-      line-height:1.5;
+      line-height:1.55;
 
       background:
-        radial-gradient(900px 520px at 18% 10%, rgba(34,211,238,.18), transparent),
-        radial-gradient(900px 520px at 85% 22%, rgba(59,130,246,.18), transparent),
-        radial-gradient(900px 520px at 68% 90%, rgba(34,197,94,.12), transparent),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+        radial-gradient(1100px 560px at 18% 10%, rgba(34,211,238,.18), transparent 60%),
+        radial-gradient(1100px 560px at 84% 18%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(900px 520px at 70% 92%, rgba(34,197,94,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg2));
+      overflow-x:hidden;
     }
 
-    a{ color:inherit; text-decoration:none }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 26px; }
 
-    /* ---------- Top success bar (Premium) ---------- */
+    /* ===== Premium top success bar ===== */
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 80;
       display:none;
       border-bottom:1px solid var(--border);
-      background: rgba(7,12,22,.70);
-      backdrop-filter: blur(10px);
+      background: rgba(5,8,18,.72);
+      backdrop-filter: blur(12px);
     }
     .topbar.show{ display:block; }
     .topbar .wrap{
@@ -64,87 +71,137 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      padding: 12px 24px;
-    }
-    .topbar .msg{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
+      padding: 12px 26px;
     }
     .pill-ok{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:8px 12px;
+      gap:10px;
+      padding: 9px 14px;
       border-radius:999px;
       border:1px solid rgba(34,197,94,.35);
       background: rgba(34,197,94,.12);
-      color: var(--text);
-      font-weight:800;
-      font-size:13px;
+      font-weight:900;
       white-space:nowrap;
+    }
+    .topbar .msg{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
     }
     .topbar button{
       cursor:pointer;
       border:1px solid var(--border);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      padding: 8px 10px;
-      border-radius:12px;
-      font-weight:800;
+      padding: 9px 12px;
+      border-radius:14px;
+      font-weight:900;
+      transition: transform .15s ease;
     }
     .topbar button:hover{ transform: translateY(-1px); }
 
-    /* ---------- Header ---------- */
+    /* ===== Header ===== */
     header{
-      position:sticky; top:0;
-      z-index:20;
-      background: rgba(7,12,22,.55);
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(5,8,18,.62);
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
+
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:14px 0;
+      padding: 14px 0;
     }
+
+    /* Bigger brand */
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
-      font-weight:900;
-      letter-spacing:.2px;
+      gap:14px;
+      min-width: 260px;
+    }
+    .logo-wrap{
+      width:54px;
+      height:54px;
+      border-radius: 18px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadowSoft);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .logo-wrap:before{
+      content:"";
+      position:absolute;
+      inset:-20px;
+      background: radial-gradient(220px 140px at 25% 20%, rgba(34,211,238,.26), transparent 60%),
+                  radial-gradient(220px 140px at 80% 70%, rgba(59,130,246,.18), transparent 60%);
+      pointer-events:none;
     }
     .brand img{
-      width:34px;
-      height:34px;
-      border-radius: 12px;
-      object-fit: cover;
-      border:1px solid var(--border);
-      box-shadow: var(--shadowSoft);
-      background: rgba(255,255,255,.06);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 6px;
+      position:relative;
+      z-index:1;
     }
-    .brand .fallbackDot{
-      width:12px; height:12px; border-radius:50%;
-      background: linear-gradient(135deg, var(--accent), var(--accentG));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.08);
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+    .brand-text strong{
+      font-size: 18px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .brand-text small{
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-top: 4px;
     }
 
     .links{
-      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
       align-items:center;
     }
-    .links a{ color:var(--muted); font-weight:700; font-size:14px }
-    .links a:hover{ color:var(--text) }
+    .links a{
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .links a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+    }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px;
-      border-radius:14px;
-      font-weight:900;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-weight: 1000;
       border:1px solid var(--border);
       background: rgba(255,255,255,.06);
       transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
@@ -152,148 +209,252 @@
     }
     .btn:hover{
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+      box-shadow: 0 16px 40px rgba(0,0,0,.28);
+      filter: saturate(1.05);
     }
     .btn.primary{
       border:none;
-      background: linear-gradient(135deg, var(--accent), var(--accentB));
-      box-shadow: 0 14px 38px rgba(34,211,238,.18);
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      box-shadow: 0 18px 48px rgba(34,211,238,.16);
     }
     .btn.secondary{
       background: rgba(34,197,94,.12);
-      border:1px solid rgba(34,197,94,.35);
+      border:1px solid rgba(34,197,94,.40);
     }
 
-    /* ---------- Layout cards ---------- */
+    /* ===== Cards + sections ===== */
     .card{
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
+    .section{
+      padding: 22px 0;
+    }
+    .kicker{
+      color: var(--muted);
+      font-weight: 1000;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
 
+    /* ===== Hero (with truck imagery) ===== */
     .hero{
-      padding: 34px 0 18px;
+      padding: 26px 0 18px;
       display:grid;
-      gap:18px;
+      gap: 18px;
       grid-template-columns: 1.2fr .8fr;
-      align-items:stretch;
+      align-items: stretch;
     }
 
-    /* Hero background image (premium) */
     .hero-left{
-      padding:28px;
+      padding: 30px;
       position: relative;
-      overflow:hidden;
-      isolation:isolate;
+      overflow: hidden;
+      isolation: isolate;
     }
+
+    /* Truck background image */
     .hero-left:before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(135deg, rgba(7,12,22,.92), rgba(7,12,22,.66)),
-        url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1600&q=60");
+        linear-gradient(135deg, rgba(5,8,18,.92), rgba(5,8,18,.55)),
+        url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1800&q=70");
       background-size: cover;
       background-position: center;
-      filter: saturate(1.12) contrast(1.02);
-      z-index:-2;
+      filter: saturate(1.12) contrast(1.03);
+      z-index:-3;
     }
+
+    /* Subtle “truck lanes” overlay */
     .hero-left:after{
       content:"";
       position:absolute;
-      inset:-40px;
+      inset:-80px;
       background:
-        radial-gradient(420px 240px at 15% 12%, rgba(34,211,238,.16), transparent),
-        radial-gradient(420px 240px at 88% 28%, rgba(59,130,246,.14), transparent);
-      z-index:-1;
+        radial-gradient(520px 260px at 14% 18%, rgba(34,211,238,.20), transparent 60%),
+        radial-gradient(520px 260px at 86% 28%, rgba(59,130,246,.18), transparent 60%),
+        repeating-linear-gradient(120deg, rgba(255,255,255,.04) 0 1px, transparent 1px 26px);
+      opacity:.55;
+      z-index:-2;
       pointer-events:none;
+      transform: rotate(-2deg);
     }
 
-    .kicker{
-      color:var(--muted);
-      font-weight:900;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:12px;
-    }
     h1{
-      margin:10px 0 10px;
-      font-size:40px;
-      line-height:1.08;
-      letter-spacing:-.6px;
+      margin: 10px 0 12px;
+      font-size: 44px;
+      line-height: 1.06;
+      letter-spacing: -0.8px;
     }
     .sub{
-      color:var(--muted);
-      font-size:16px;
-      margin:0 0 18px;
-      max-width: 56ch;
-    }
-    .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
-    .badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }
-    .badge{
-      font-size:13px;
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.05);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      color: var(--muted);
+      font-size: 16.5px;
+      margin: 0 0 18px;
+      max-width: 58ch;
     }
 
-    .hero-right{ padding:22px; display:grid; gap:12px }
+    .hero-badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 13px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      backdrop-filter: blur(6px);
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    .hero-right{
+      padding: 22px;
+      display:grid;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(16,24,44,.82), rgba(16,24,44,.70));
+    }
+
     .stat{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--border);
+      padding: 14px 14px 14px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.04);
-      transition: transform .18s ease, border-color .18s ease;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
     .stat:hover{
       transform: translateY(-2px);
       border-color: rgba(34,211,238,.30);
+      background: rgba(255,255,255,.05);
     }
-    .stat strong{ display:block; font-size:18px; letter-spacing:-.2px }
-    .stat span{ color:var(--muted); font-size:13px }
+    .stat strong{
+      display:block;
+      font-size: 18px;
+      font-weight: 1000;
+      letter-spacing:-.2px;
+    }
+    .stat span{
+      display:block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-    section{ padding:18px 0 }
-    .grid3{ display:grid; gap:14px; grid-template-columns:repeat(3,1fr) }
-    .grid2{ display:grid; gap:14px; grid-template-columns:repeat(2,1fr) }
+    /* ===== Premium image strip (adds trucks) ===== */
+    .strip{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .strip .img{
+      height: 110px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadowSoft);
+      position:relative;
+    }
+    .strip .img:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(135deg, rgba(5,8,18,.45), rgba(5,8,18,.65));
+      pointer-events:none;
+    }
+    .strip .img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      filter: saturate(1.08) contrast(1.02);
+      transform: scale(1.02);
+    }
+
+    /* ===== Grids ===== */
+    .grid3{ display:grid; gap: 14px; grid-template-columns: repeat(3,1fr); }
+    .grid2{ display:grid; gap: 14px; grid-template-columns: repeat(2,1fr); }
 
     .tile{
-      padding:18px;
+      padding: 18px;
+      background: rgba(16,24,44,.78);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      background: rgba(17,27,46,.80);
+      position: relative;
+      overflow:hidden;
     }
     .tile:hover{
       transform: translateY(-2px);
       border-color: rgba(59,130,246,.22);
-      background: rgba(17,27,46,.88);
+      background: rgba(16,24,44,.88);
     }
-    .tile h3{ margin:8px 0 6px }
-    .tile p{ margin:0; color:var(--muted) }
+    .tile h3{ margin: 8px 0 6px; font-weight: 1000; letter-spacing:-.2px; }
+    .tile p{ margin:0; color: var(--muted); font-weight: 750; }
+
+    /* Little color accent in tiles */
+    .tile:before{
+      content:"";
+      position:absolute;
+      left: 14px;
+      top: 14px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--green));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.08);
+      opacity:.9;
+    }
 
     /* Steps */
-    .steps{ counter-reset: step }
-    .step{ padding:18px; position:relative; }
+    .steps{ counter-reset: step; }
+    .step{ padding: 18px; position: relative; }
     .step:before{
       counter-increment: step;
       content: counter(step);
       position:absolute;
-      top:16px; right:16px;
-      width:34px; height:34px;
-      border-radius:12px;
-      display:grid; place-items:center;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      font-weight: 1000;
       background: rgba(34,211,238,.14);
       border: 1px solid rgba(34,211,238,.35);
-      font-weight: 1000;
+      box-shadow: var(--glow);
+    }
+
+    /* Reviews */
+    .quote{
+      font-size: 14.5px;
+      color: var(--muted);
+      font-weight: 760;
     }
 
     /* FAQ */
     .faq details{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 16px;
       background: rgba(255,255,255,.04);
       transition: border-color .18s ease, background .18s ease;
     }
@@ -301,49 +462,59 @@
       border-color: rgba(34,211,238,.30);
       background: rgba(255,255,255,.05);
     }
-    .faq summary{ cursor:pointer; font-weight:1000; }
-    .faq p{ margin:10px 0 0; color:var(--muted) }
+    .faq summary{
+      cursor:pointer;
+      font-weight: 1000;
+      letter-spacing:-.2px;
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq summary:before{
+      content:"▸";
+      display:inline-block;
+      margin-right:10px;
+      color: var(--teal);
+      transform: translateY(-1px);
+    }
+    .faq details[open] summary:before{ content:"▾"; }
+    .faq p{ margin: 10px 0 0; color: var(--muted); font-weight: 760; }
 
-    /* Contact */
+    /* Contact pills */
     .contact{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:10px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
     .pill{
-      border:1px solid var(--border);
-      padding:10px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      font-weight: 900;
       display:inline-flex;
-      gap:8px;
       align-items:center;
+      gap:10px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      font-weight: 1000;
     }
-    .pill small{ display:block; font-weight:700; color:var(--muted) }
+    .pill span{ display:flex; flex-direction:column; line-height:1.05; }
+    .pill small{ color: var(--muted); font-weight: 820; margin-top: 4px; }
 
-    /* Contact form */
-    .form{
-      margin-top: 14px;
-      display:grid;
-      gap: 10px;
-    }
+    /* Form */
+    .form{ margin-top: 14px; display:grid; gap: 10px; }
     .form label{
-      font-weight: 900;
-      font-size: 13px;
-      color: var(--muted);
       display:block;
       margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing:.02em;
     }
-    .form .row{
-      display:grid;
-      gap: 10px;
-      grid-template-columns: 1fr 1fr;
-    }
+    .form .row{ display:grid; gap: 10px; grid-template-columns: 1fr 1fr; }
     .input, .textarea{
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--border2);
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border2);
       background: rgba(255,255,255,.04);
       color: var(--text);
       outline:none;
@@ -353,55 +524,62 @@
       border-color: var(--focus);
       box-shadow: 0 0 0 4px rgba(34,211,238,.12);
     }
-    .textarea{ min-height: 110px; resize: vertical; }
+    .textarea{ min-height: 120px; resize: vertical; }
 
-    /* Inline form status (inside contact section) */
     .form-status{
       display:none;
       margin-top: 10px;
       padding: 12px 14px;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid rgba(34,197,94,.35);
       background: rgba(34,197,94,.10);
       color: var(--text);
-      font-weight: 900;
+      font-weight: 1000;
     }
     .form-status.show{ display:block; }
-    .form-status small{ display:block; margin-top:4px; color: var(--muted); font-weight:700; }
+    .form-status small{
+      display:block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 820;
+    }
 
     footer{
-      padding: 26px 0 40px;
+      padding: 30px 0 46px;
       color: var(--muted);
+      font-weight: 800;
       font-size: 14px;
     }
 
-    /* Floating call/text */
+    /* Floating actions */
     .float-actions{
       position: fixed;
       right: 18px;
       bottom: 18px;
-      display: flex;
-      flex-direction: column;
+      display:flex;
+      flex-direction:column;
       gap: 12px;
       z-index: 999;
     }
     .float-actions a{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap: 10px;
       padding: 12px 16px;
       border-radius: 999px;
-      border:1px solid var(--border);
-      background: rgba(17,27,46,.95);
+      border: 1px solid var(--border);
+      background: rgba(16,24,44,.95);
       box-shadow: var(--shadowSoft);
       font-weight: 1000;
       font-size: 14px;
       white-space: nowrap;
-      transition: transform .15s ease, border-color .15s ease;
+      transition: transform .15s ease, border-color .15s ease, filter .15s ease;
+      backdrop-filter: blur(8px);
     }
     .float-actions a:hover{
       transform: translateY(-1px);
       border-color: rgba(34,211,238,.28);
+      filter: saturate(1.05);
     }
     .float-actions a span{
       display:flex;
@@ -409,33 +587,41 @@
       line-height: 1.08;
     }
     .float-actions a span small{
-      font-size:12px;
-      font-weight: 800;
+      margin-top: 2px;
       color: var(--muted);
-      margin-top:2px;
+      font-weight: 850;
+      font-size: 12px;
     }
 
-    /* Scroll reveal (premium) */
+    /* Scroll reveal */
     .reveal{
       opacity: 0;
       transform: translateY(10px);
-      transition: opacity .5s ease, transform .5s ease;
+      transition: opacity .55s ease, transform .55s ease;
     }
     .reveal.show{
       opacity: 1;
       transform: translateY(0);
     }
     @media (prefers-reduced-motion: reduce){
-      .btn, .tile, .stat, .float-actions a { transition:none !important; }
       .reveal{ opacity:1; transform:none; }
     }
 
-    @media (max-width: 900px){
+    /* Responsive */
+    @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; }
+      .strip{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
-      h1{ font-size: 32px; }
+      h1{ font-size: 34px; }
       .form .row{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+    @media (max-width: 520px){
+      .wrap{ padding: 18px; }
+      .logo-wrap{ width: 48px; height: 48px; border-radius: 16px; }
+      .brand-text strong{ font-size: 16px; }
+      .links a{ padding: 6px 8px; }
       .float-actions{ right: 12px; bottom: 12px; }
       .float-actions a{ padding: 10px 14px; font-size: 13px; }
     }
@@ -444,7 +630,7 @@
 
 <body>
 
-<!-- Top success bar (shows after form submit) -->
+<!-- Premium top success bar -->
 <div class="topbar" id="topbar" role="status" aria-live="polite">
   <div class="wrap">
     <div class="msg">
@@ -458,11 +644,15 @@
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <!-- Logo: upload your logo file into the repo as "logo.png" -->
-      <img src="logo.png" alt="Legacy Path Logistics logo"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
-      <span class="fallbackDot" style="display:none;"></span>
-      <span>Legacy Path Logistics</span>
+      <div class="logo-wrap" title="Legacy Path Logistics">
+        <!-- Upload your logo as: logo.png (repo root) -->
+        <img src="logo.png" alt="Legacy Path Logistics logo"
+             onerror="this.style.display='none';" />
+      </div>
+      <div class="brand-text">
+        <strong>Legacy Path Logistics</strong>
+        <small>Freight Dispatch</small>
+      </div>
     </div>
 
     <nav class="links">
@@ -478,47 +668,67 @@
 
 <main class="wrap">
 
+  <!-- HERO -->
   <section class="hero">
     <div class="card hero-left reveal">
-      <div class="kicker">Freight Dispatch Services</div>
-      <h1>Stay loaded. Stay organized. Drive with confidence.</h1>
+      <div class="kicker">Premium Freight Dispatch Services</div>
+      <h1>Stay loaded. Stay organized. <span style="background:linear-gradient(135deg,var(--teal),var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent;">Drive with confidence.</span></h1>
       <p class="sub">
-        We help owner-operators and small fleets find solid loads, negotiate better rates,
+        We help owner-operators and small fleets find strong loads, negotiate better rates,
         and keep paperwork tight — so you can focus on driving.
       </p>
+
       <div class="cta">
         <a class="btn primary" href="#contact">Request Dispatch Support</a>
         <a class="btn" href="#services">See Services</a>
       </div>
-      <div class="badges">
-        <div class="badge">✅ Rate Negotiation</div>
-        <div class="badge">✅ Load Planning</div>
-        <div class="badge">✅ Carrier Setup + Docs</div>
-        <div class="badge">✅ Professional Communication</div>
+
+      <div class="hero-badges">
+        <span class="badge">✅ Rate Negotiation</span>
+        <span class="badge">✅ Load Planning</span>
+        <span class="badge">✅ Carrier Setup + Docs</span>
+        <span class="badge">✅ Broker Follow-ups</span>
+      </div>
+
+      <!-- Truck image strip -->
+      <div class="strip" aria-label="Trucking imagery">
+        <div class="img">
+          <img alt="Truck on highway"
+               src="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?auto=format&fit=crop&w=1200&q=70">
+        </div>
+        <div class="img">
+          <img alt="Semi truck"
+               src="https://images.unsplash.com/photo-1501706362039-c6e8095b4371?auto=format&fit=crop&w=1200&q=70">
+        </div>
+        <div class="img">
+          <img alt="Freight logistics"
+               src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=70">
+        </div>
       </div>
     </div>
 
     <div class="card hero-right reveal">
       <div class="stat">
         <strong>Fast response</strong>
-        <span>Quick load options & broker follow-up</span>
+        <span>Quick options + broker follow-ups</span>
       </div>
       <div class="stat">
-        <strong>Reliable communication</strong>
-        <span>Professional dispatch updates & coordination</span>
+        <strong>Premium communication</strong>
+        <span>Professional updates & coordination</span>
       </div>
       <div class="stat">
         <strong>Driver-first mindset</strong>
         <span>We protect your time, rate, and schedule</span>
       </div>
-      <div class="stat" style="border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10);">
+      <div class="stat" style="border-color: rgba(34,197,94,.40); background: rgba(34,197,94,.10);">
         <strong>Simple onboarding</strong>
         <span>Get started in minutes</span>
       </div>
     </div>
   </section>
 
-  <section id="services" class="reveal">
+  <!-- SERVICES -->
+  <section id="services" class="section reveal">
     <div class="kicker">Services</div>
     <div class="grid3">
       <div class="card tile">
@@ -536,25 +746,27 @@
     </div>
   </section>
 
-  <section id="how" class="reveal">
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section reveal">
     <div class="kicker">How it works</div>
     <div class="grid3 steps">
-      <div class="card step">
+      <div class="card tile step">
         <h3>1) Quick Setup</h3>
         <p>Send your MC/DOT + equipment type + preferred lanes.</p>
       </div>
-      <div class="card step">
+      <div class="card tile step">
         <h3>2) We Find & Negotiate</h3>
         <p>We search, call brokers, negotiate, then send you top options.</p>
       </div>
-      <div class="card step">
+      <div class="card tile step">
         <h3>3) You Drive</h3>
         <p>Once booked, we help keep everything on track — pickup to delivery.</p>
       </div>
     </div>
   </section>
 
-  <section id="why" class="reveal">
+  <!-- WHY US -->
+  <section id="why" class="section reveal">
     <div class="kicker">Why choose Legacy Path Logistics</div>
     <div class="grid2">
       <div class="card tile">
@@ -568,28 +780,30 @@
     </div>
   </section>
 
-  <section id="reviews" class="reveal">
+  <!-- REVIEWS -->
+  <section id="reviews" class="section reveal">
     <div class="kicker">Trusted by drivers</div>
     <div class="grid3">
       <div class="card tile">
         <h3>“Fast communication.”</h3>
-        <p>“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Owner-Operator</p>
+        <p class="quote">“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:1000;">— Owner-Operator</p>
       </div>
       <div class="card tile">
         <h3>“Better planning.”</h3>
-        <p>“Load planning helped me reduce deadhead and keep my week organized.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Small Fleet</p>
+        <p class="quote">“Load planning helped me reduce deadhead and keep my week organized.”</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:1000;">— Small Fleet</p>
       </div>
       <div class="card tile">
         <h3>“Professional paperwork.”</h3>
-        <p>“Carrier setup and rate confirmations were handled clean and on time.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Dispatch Client</p>
+        <p class="quote">“Carrier setup and rate confirmations were handled clean and on time.”</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:1000;">— Dispatch Client</p>
       </div>
     </div>
   </section>
 
-  <section class="faq reveal">
+  <!-- FAQ -->
+  <section class="section faq reveal">
     <div class="kicker">FAQ</div>
     <div class="grid2">
       <details class="card">
@@ -611,11 +825,12 @@
     </div>
   </section>
 
-  <section id="contact" class="reveal">
+  <!-- CONTACT -->
+  <section id="contact" class="section reveal">
     <div class="card tile">
       <div class="kicker">Contact</div>
-      <h2 style="margin:8px 0 4px;">Let’s get you dispatched.</h2>
-      <p style="margin:0;color:var(--muted)">Call/text/email and we’ll respond quickly.</p>
+      <h2 style="margin:8px 0 4px; font-weight:1000; letter-spacing:-.2px;">Let’s get you dispatched.</h2>
+      <p style="margin:0;color:var(--muted);font-weight:800;">Call/text/email and we’ll respond quickly.</p>
 
       <div class="contact">
         <div class="pill">📞 <span>Phone <small>+1 (910) 446-3125</small></span></div>
@@ -623,13 +838,11 @@
         <div class="pill">📍 <span>Service Area <small>Nationwide (US)</small></span></div>
       </div>
 
-      <!-- ✅ 1) Premium success message (inline) + ✅ 2) no redirect (AJAX) -->
       <div class="form-status" id="formStatus">
         ✅ Message sent. We’ll reach out shortly.
-        <small>If you don’t hear back fast, call/text us using the buttons on the right.</small>
+        <small>If you need fast help, use the Call/Text buttons.</small>
       </div>
 
-      <!-- Formspree -->
       <form class="form" id="leadForm" action="https://formspree.io/f/xqeddaqa" method="POST">
         <div class="row">
           <div>
@@ -649,7 +862,7 @@
 
         <div>
           <label for="message">Message</label>
-          <textarea class="textarea" id="message" name="message" placeholder="Tell us your equipment type + preferred lanes + start date…" required></textarea>
+          <textarea class="textarea" id="message" name="message" placeholder="Equipment type + preferred lanes + start date…" required></textarea>
         </div>
 
         <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
@@ -661,13 +874,13 @@
         <a class="btn" href="tel:+19104463125">Call Now</a>
       </div>
 
-      <p style="margin-top:14px; color:var(--muted); font-size:13px;">
+      <p style="margin-top:14px;color:var(--muted);font-size:13px;font-weight:800;">
         *We do not provide legal or tax advice. Carrier remains responsible for compliance and operations.
       </p>
     </div>
   </section>
 
-  <footer class="wrap">
+  <footer>
     © <span id="year"></span> Legacy Path Logistics. All rights reserved.
   </footer>
 
@@ -676,12 +889,10 @@
 <!-- Floating Call/Text -->
 <div class="float-actions" aria-label="Quick actions">
   <a href="tel:+19104463125" aria-label="Call Legacy Path Logistics">
-    📞
-    <span>Call Now <small>Fast response</small></span>
+    📞 <span>Call Now <small>Fast response</small></span>
   </a>
   <a href="sms:+19104463125" aria-label="Text Legacy Path Logistics">
-    💬
-    <span>Text Us <small>Send your lane</small></span>
+    💬 <span>Text Us <small>Send your lane</small></span>
   </a>
 </div>
 
@@ -689,7 +900,7 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ✅ 3) Premium scroll reveal
+  // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     for (const e of entries){
@@ -698,7 +909,7 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
-  // ✅ 1) Success message + ✅ 2) Auto-scroll to top after submit + no redirect
+  // Success bar + Formspree AJAX + auto-scroll
   const form = document.getElementById('leadForm');
   const statusBox = document.getElementById('formStatus');
   const topbar = document.getElementById('topbar');
@@ -709,9 +920,13 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
+
+    // reset status styles (in case of previous error)
+    statusBox.style.borderColor = 'rgba(34,197,94,.35)';
+    statusBox.style.background = 'rgba(34,197,94,.10)';
+    statusBox.innerHTML = '✅ Message sent. We’ll reach out shortly.<small>If you need fast help, use the Call/Text buttons.</small>';
 
     try{
       const data = new FormData(form);
@@ -720,24 +935,18 @@
         body: data,
         headers: { 'Accept': 'application/json' }
       });
-
       if (!res.ok) throw new Error('Form submit failed');
 
-      // Show success UI
       statusBox.classList.add('show');
       topbar.classList.add('show');
-
-      // Clear form
       form.reset();
 
-      // ✅ Auto-scroll to top (premium feel)
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
     } catch(err){
       statusBox.classList.add('show');
       statusBox.style.borderColor = 'rgba(168,85,247,.45)';
       statusBox.style.background = 'rgba(168,85,247,.14)';
-      statusBox.textContent = '⚠️ Something went wrong. Please try again, or call/text us using the buttons.';
+      statusBox.innerHTML = '⚠️ Something went wrong. Please try again, or call/text us using the buttons.<small>Tip: refresh the page and retry.</small>';
     } finally{
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send Message';
