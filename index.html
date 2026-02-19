@@ -3,78 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Legacy Path Logistics | Freight Dispatch Services</title>
-  <meta name="description" content="Premium freight dispatch services for owner-operators and small fleets. Stay loaded, stay organized, drive with confidence." />
+  <title>Legacy Path Logistics | Freight Dispatch</title>
+  <meta name="description" content="Premium dispatch support for owner-operators and small fleets. Rate negotiation, load planning, and paperwork support." />
+
+  <!-- Optional (looks more premium in browser tab) -->
+  <link rel="icon" href="logo.png" />
+
+  <!-- Premium font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Base */
-      --bg0:#050812;
-      --bg1:#070c16;
-      --bg2:#0b1220;
-      --text:#eef4ff;
+      /* Bold Logistics + High-End Tech */
+      --bg0:#05070f;
+      --bg1:#070b16;
+      --bg2:#0b1224;
+      --ink:#eef4ff;
       --muted:#a7b6d6;
 
-      /* Premium colors */
       --teal:#22d3ee;
+      --orange:#fb923c;
+      --amber:#f59e0b;
       --blue:#3b82f6;
       --green:#22c55e;
-      --purple:#a855f7;
-      --amber:#f59e0b;
-      --rose:#fb7185;
 
-      /* UI */
-      --card: rgba(16,24,44,.84);
+      --card: rgba(16,24,44,.86);
       --card2: rgba(16,24,44,.62);
-      --border: rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.12);
       --border2: rgba(255,255,255,.16);
-      --shadow: 0 22px 60px rgba(0,0,0,.50);
-      --shadowSoft: 0 14px 38px rgba(0,0,0,.36);
+      --shadow: 0 22px 60px rgba(0,0,0,.55);
+      --shadowSoft: 0 14px 38px rgba(0,0,0,.38);
       --radius: 24px;
       --max: 1180px;
 
-      --focus: rgba(34,211,238,.60);
-      --glow: 0 0 0 6px rgba(34,211,238,.12), 0 0 0 1px rgba(59,130,246,.14);
+      --glowA: 0 0 0 6px rgba(34,211,238,.12), 0 0 0 1px rgba(251,146,60,.12);
+      --focus: rgba(34,211,238,.65);
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
       line-height:1.55;
-
-      /* More COLORFUL background */
-      background:
-        radial-gradient(900px 520px at 15% 12%, rgba(34,211,238,.26), transparent 62%),
-        radial-gradient(900px 520px at 86% 14%, rgba(59,130,246,.24), transparent 62%),
-        radial-gradient(820px 520px at 18% 86%, rgba(168,85,247,.14), transparent 62%),
-        radial-gradient(820px 520px at 86% 88%, rgba(34,197,94,.14), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg2));
       overflow-x:hidden;
+
+      /* More color: teal + orange tech glow */
+      background:
+        radial-gradient(900px 520px at 14% 12%, rgba(34,211,238,.24), transparent 62%),
+        radial-gradient(900px 520px at 86% 14%, rgba(251,146,60,.22), transparent 62%),
+        radial-gradient(820px 520px at 18% 88%, rgba(59,130,246,.12), transparent 62%),
+        radial-gradient(820px 520px at 86% 88%, rgba(34,197,94,.10), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg2));
     }
 
     a{ color:inherit; text-decoration:none; }
     .wrap{ max-width:var(--max); margin:0 auto; padding: 26px; }
 
-    /* ===== Glow divider ===== */
-    .divider{
-      height: 1px;
-      width: 100%;
-      margin: 18px 0 0;
-      background: linear-gradient(90deg, transparent, rgba(34,211,238,.55), rgba(59,130,246,.45), rgba(34,197,94,.35), transparent);
-      opacity:.9;
-    }
-
-    /* ===== Premium top success bar ===== */
+    /* Top success bar */
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 90;
+      z-index: 100;
       display:none;
-      border-bottom:1px solid var(--border);
-      background: rgba(5,8,18,.82);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      background: rgba(5,7,15,.82);
       backdrop-filter: blur(14px);
     }
     .topbar.show{ display:block; }
@@ -93,38 +89,32 @@
       border-radius:999px;
       border:1px solid rgba(34,197,94,.38);
       background: rgba(34,197,94,.12);
-      font-weight:1000;
+      font-weight:900;
       white-space:nowrap;
       box-shadow: 0 0 24px rgba(34,197,94,.10);
     }
-    .topbar .msg{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:1000;
-    }
+    .topbar .msg{ display:flex; align-items:center; gap:12px; font-weight:900; }
     .topbar button{
       cursor:pointer;
-      border:1px solid var(--border);
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
-      color: var(--text);
+      color: var(--ink);
       padding: 9px 12px;
       border-radius:14px;
-      font-weight:1000;
+      font-weight:900;
       transition: transform .15s ease;
     }
     .topbar button:hover{ transform: translateY(-1px); }
 
-    /* ===== Header ===== */
+    /* Header */
     header{
       position: sticky;
       top: 0;
-      z-index: 80;
-      background: rgba(5,8,18,.68);
+      z-index: 90;
+      background: rgba(5,7,15,.68);
       border-bottom: 1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(14px);
     }
-
     .nav{
       display:flex;
       align-items:center;
@@ -138,104 +128,111 @@
       display:flex;
       align-items:center;
       gap:16px;
-      min-width: 320px;
+      min-width: 330px;
     }
-
     .logo-wrap{
-      width:72px;
-      height:72px;
+      width:74px;
+      height:74px;
       border-radius: 22px;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
-      box-shadow: var(--shadowSoft);
+      box-shadow:
+        var(--shadowSoft),
+        0 0 28px rgba(34,211,238,.14),
+        0 0 44px rgba(251,146,60,.12);
       display:grid;
       place-items:center;
       overflow:hidden;
       position:relative;
       isolation:isolate;
     }
-
-    /* Animated premium ring glow */
+    /* animated premium ring */
     .logo-wrap:before{
       content:"";
       position:absolute;
-      inset:-26px;
+      inset:-28px;
       background:
-        conic-gradient(from 200deg,
-          rgba(34,211,238,.0),
-          rgba(34,211,238,.32),
-          rgba(59,130,246,.28),
-          rgba(168,85,247,.22),
-          rgba(34,197,94,.22),
-          rgba(34,211,238,.0)
+        conic-gradient(from 210deg,
+          rgba(34,211,238,0),
+          rgba(34,211,238,.34),
+          rgba(251,146,60,.32),
+          rgba(59,130,246,.22),
+          rgba(34,197,94,.18),
+          rgba(34,211,238,0)
         );
-      filter: blur(1.2px);
+      animation: spinGlow 6.8s linear infinite;
       opacity:.95;
-      animation: spinGlow 6.5s linear infinite;
       z-index:0;
     }
-    @keyframes spinGlow{
-      0%{ transform: rotate(0deg); }
-      100%{ transform: rotate(360deg); }
-    }
-
-    /* Inner glass */
+    @keyframes spinGlow{ to{ transform: rotate(360deg);} }
     .logo-wrap:after{
       content:"";
       position:absolute;
       inset:3px;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
       border: 1px solid rgba(255,255,255,.10);
       z-index:1;
     }
-
     .brand img{
       width: 100%;
       height: 100%;
       object-fit: cover;
-      padding: 2px;
       border-radius: 18px;
+      padding: 2px;
       position:relative;
       z-index:2;
       background: rgba(0,0,0,.18);
     }
 
-    .brand-text{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
-
-    /* Shining company name */
+    .brand-text{ display:flex; flex-direction:column; line-height:1.05; }
     .brand-text strong{
-      font-size: 24px;
-      font-weight: 1100;
+      font-size: 28px;
+      font-weight: 900;
       letter-spacing: .2px;
-      background: linear-gradient(90deg, #ffffff, rgba(34,211,238,.95), rgba(59,130,246,.95), #ffffff);
+
+      /* animated shine (teal + orange) */
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,.92) 0%,
+        rgba(34,211,238,.98) 25%,
+        rgba(251,146,60,.96) 55%,
+        rgba(255,255,255,.92) 100%
+      );
+      background-size: 220% 100%;
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-      text-shadow: 0 0 26px rgba(34,211,238,.16);
+
+      text-shadow:
+        0 0 18px rgba(34,211,238,.18),
+        0 0 28px rgba(251,146,60,.12);
+
+      animation: brandShine 4.8s ease-in-out infinite;
     }
+    @keyframes brandShine{
+      0%{ background-position: 0% 50%; filter: brightness(1.00); }
+      50%{ background-position: 100% 50%; filter: brightness(1.18); }
+      100%{ background-position: 0% 50%; filter: brightness(1.00); }
+    }
+
     .brand-text small{
-      color: rgba(167,182,214,.95);
+      color: rgba(167,182,214,.96);
       font-weight: 900;
-      letter-spacing:.14em;
+      letter-spacing:.16em;
       text-transform: uppercase;
       font-size: 12px;
-      margin-top: 7px;
-      position:relative;
+      margin-top: 8px;
     }
     .brand-text small:after{
       content:"";
       display:block;
-      margin-top:7px;
+      margin-top:8px;
       height:2px;
-      width: 96px;
+      width: 112px;
       border-radius: 99px;
-      background: linear-gradient(90deg, rgba(34,211,238,.0), rgba(34,211,238,.75), rgba(59,130,246,.65), rgba(34,197,94,.45), rgba(34,211,238,.0));
-      opacity:.9;
+      background: linear-gradient(90deg, rgba(34,211,238,0), rgba(34,211,238,.8), rgba(251,146,60,.7), rgba(34,211,238,0));
+      opacity:.95;
     }
 
     .links{
@@ -247,16 +244,13 @@
     }
     .links a{
       color: var(--muted);
-      font-weight: 900;
+      font-weight: 800;
       font-size: 14px;
       padding: 8px 10px;
       border-radius: 12px;
       transition: background .15s ease, color .15s ease;
     }
-    .links a:hover{
-      color: var(--text);
-      background: rgba(255,255,255,.05);
-    }
+    .links a:hover{ color: var(--ink); background: rgba(255,255,255,.05); }
 
     .btn{
       display:inline-flex;
@@ -264,8 +258,8 @@
       justify-content:center;
       padding: 12px 16px;
       border-radius: 16px;
-      font-weight: 1000;
-      border:1px solid var(--border);
+      font-weight: 900;
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
       will-change: transform;
@@ -277,15 +271,37 @@
     }
     .btn.primary{
       border:none;
-      background: linear-gradient(135deg, var(--teal), var(--blue), var(--purple));
-      box-shadow: 0 22px 58px rgba(34,211,238,.16);
+      background: linear-gradient(135deg, var(--teal), var(--orange));
+      box-shadow: 0 22px 58px rgba(34,211,238,.14);
+      position:relative;
+      overflow:hidden;
     }
-    .btn.secondary{
-      background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(34,211,238,.12));
-      border:1px solid rgba(34,197,94,.42);
+    /* subtle shine sweep */
+    .btn.primary:after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-30%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+      transform: rotate(18deg);
+      animation: btnSweep 3.8s ease-in-out infinite;
+      opacity:.65;
+    }
+    @keyframes btnSweep{
+      0%{ transform: translateX(-60%) rotate(18deg); }
+      50%{ transform: translateX(220%) rotate(18deg); }
+      100%{ transform: translateX(220%) rotate(18deg); }
     }
 
-    /* ===== Cards + sections ===== */
+    .btn.secondary{
+      background: linear-gradient(135deg, rgba(34,211,238,.14), rgba(251,146,60,.12));
+      border:1px solid rgba(251,146,60,.34);
+      box-shadow: 0 0 24px rgba(251,146,60,.08);
+    }
+
+    /* Cards */
     .card{
       background: var(--card);
       border: 1px solid rgba(255,255,255,.12);
@@ -294,16 +310,14 @@
       position:relative;
       overflow:hidden;
     }
-
-    /* Color glow behind cards */
     .card:before{
       content:"";
       position:absolute;
-      inset:-140px;
+      inset:-160px;
       background:
-        radial-gradient(620px 320px at 18% 18%, rgba(34,211,238,.12), transparent 60%),
-        radial-gradient(620px 320px at 82% 26%, rgba(59,130,246,.10), transparent 60%),
-        radial-gradient(620px 320px at 70% 84%, rgba(168,85,247,.08), transparent 60%);
+        radial-gradient(650px 320px at 18% 18%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(650px 320px at 86% 26%, rgba(251,146,60,.10), transparent 60%),
+        radial-gradient(650px 320px at 60% 88%, rgba(59,130,246,.08), transparent 60%);
       pointer-events:none;
       z-index:0;
     }
@@ -311,15 +325,23 @@
 
     .section{ padding: 26px 0; }
     .kicker{
-      color: rgba(167,182,214,.95);
-      font-weight: 1000;
-      letter-spacing: .12em;
+      color: rgba(167,182,214,.96);
+      font-weight: 900;
+      letter-spacing: .14em;
       text-transform: uppercase;
       font-size: 12px;
       margin-bottom: 10px;
     }
 
-    /* ===== Hero ===== */
+    .divider{
+      height:1px;
+      width:100%;
+      margin: 18px 0 0;
+      background: linear-gradient(90deg, transparent, rgba(34,211,238,.65), rgba(251,146,60,.55), transparent);
+      opacity:.95;
+    }
+
+    /* Hero */
     .hero{
       padding: 26px 0 18px;
       display:grid;
@@ -327,36 +349,32 @@
       grid-template-columns: 1.2fr .8fr;
       align-items: stretch;
     }
-
     .hero-left{
       padding: 32px;
       position: relative;
       overflow: hidden;
       isolation: isolate;
     }
-
     .hero-left:before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 18% 18%, rgba(34,211,238,.30), transparent 60%),
-        radial-gradient(900px 520px at 86% 22%, rgba(59,130,246,.24), transparent 60%),
-        linear-gradient(135deg, rgba(5,8,18,.92), rgba(5,8,18,.62)),
+        radial-gradient(900px 520px at 18% 18%, rgba(34,211,238,.26), transparent 60%),
+        radial-gradient(900px 520px at 86% 22%, rgba(251,146,60,.22), transparent 60%),
+        linear-gradient(135deg, rgba(5,7,15,.92), rgba(5,7,15,.58)),
         url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1800&q=70");
       background-size: cover;
       background-position: center;
-      filter: saturate(1.12) contrast(1.03);
+      filter: saturate(1.12) contrast(1.04);
       z-index:-3;
     }
-
     .hero-left:after{
       content:"";
       position:absolute;
-      inset:-80px;
-      background:
-        repeating-linear-gradient(120deg, rgba(255,255,255,.04) 0 1px, transparent 1px 26px);
-      opacity:.5;
+      inset:-90px;
+      background: repeating-linear-gradient(120deg, rgba(255,255,255,.04) 0 1px, transparent 1px 26px);
+      opacity:.50;
       z-index:-2;
       pointer-events:none;
       transform: rotate(-2deg);
@@ -364,68 +382,54 @@
 
     h1{
       margin: 10px 0 12px;
-      font-size: 48px;
+      font-size: 52px;
       line-height: 1.05;
-      letter-spacing: -0.9px;
+      letter-spacing: -1px;
     }
     .grad{
-      background:linear-gradient(135deg,var(--teal),var(--blue),var(--purple));
+      background:linear-gradient(135deg,var(--teal),var(--orange));
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-      text-shadow: 0 0 30px rgba(34,211,238,.10);
+      text-shadow: 0 0 26px rgba(34,211,238,.10);
     }
-
     .sub{
-      color: rgba(167,182,214,.95);
+      color: rgba(167,182,214,.96);
       font-size: 16.5px;
       margin: 0 0 18px;
-      max-width: 58ch;
-      font-weight: 750;
+      max-width: 60ch;
+      font-weight: 600;
     }
+    .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 10px; }
 
     .hero-badges{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 14px;
+      display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;
     }
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
       font-size: 13px;
-      color: var(--text);
+      color: var(--ink);
       border: 1px solid rgba(255,255,255,.12);
       padding: 9px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,.06);
       backdrop-filter: blur(6px);
-      font-weight: 1000;
+      font-weight: 800;
     }
     .badge i{
-      width: 10px; height: 10px; border-radius: 999px; display:inline-block;
-      background: linear-gradient(135deg, var(--green), var(--teal), var(--blue));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.10);
+      width:10px; height:10px; border-radius:999px; display:inline-block;
+      background: linear-gradient(135deg, var(--teal), var(--orange));
+      box-shadow: 0 0 0 7px rgba(34,211,238,.10);
     }
 
-    .cta{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-
-    /* Hero right */
     .hero-right{
       padding: 22px;
       display:grid;
       gap: 12px;
-      background: linear-gradient(180deg, rgba(16,24,44,.84), rgba(16,24,44,.70));
-      position:relative;
-      overflow:hidden;
+      background: linear-gradient(180deg, rgba(16,24,44,.86), rgba(16,24,44,.70));
     }
-
     .stat{
       padding: 14px;
       border-radius: 18px;
@@ -433,26 +437,11 @@
       background: rgba(255,255,255,.045);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
-    .stat:hover{
-      transform: translateY(-2px);
-      border-color: rgba(34,211,238,.35);
-      background: rgba(255,255,255,.06);
-    }
-    .stat strong{
-      display:block;
-      font-size: 18px;
-      font-weight: 1000;
-      letter-spacing:-.2px;
-    }
-    .stat span{
-      display:block;
-      margin-top: 2px;
-      color: rgba(167,182,214,.95);
-      font-size: 13px;
-      font-weight: 850;
-    }
+    .stat:hover{ transform: translateY(-2px); border-color: rgba(251,146,60,.28); background: rgba(255,255,255,.06); }
+    .stat strong{ display:block; font-size: 18px; font-weight: 900; letter-spacing:-.2px; }
+    .stat span{ display:block; margin-top: 2px; color: rgba(167,182,214,.96); font-size: 13px; font-weight: 700; }
 
-    /* ===== Moving Truck ===== */
+    /* Moving truck road */
     .road{
       margin-top: 18px;
       border-radius: 18px;
@@ -470,7 +459,7 @@
       right:-20%;
       top: 52%;
       height: 2px;
-      background: repeating-linear-gradient(90deg, rgba(34,211,238,.0) 0 18px, rgba(34,211,238,.65) 18px 34px);
+      background: repeating-linear-gradient(90deg, rgba(251,146,60,0) 0 18px, rgba(251,146,60,.75) 18px 34px);
       opacity:.55;
       transform: translateY(-50%);
     }
@@ -478,39 +467,40 @@
       content:"";
       position:absolute;
       inset:0;
-      background: radial-gradient(520px 240px at 20% 0%, rgba(34,211,238,.10), transparent 60%),
-                  radial-gradient(520px 240px at 80% 100%, rgba(168,85,247,.08), transparent 60%);
+      background:
+        radial-gradient(520px 240px at 20% 0%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(520px 240px at 80% 100%, rgba(251,146,60,.10), transparent 60%);
       pointer-events:none;
     }
     .truck{
       position:absolute;
-      left: -180px;
+      left: -200px;
       top: 14px;
-      width: 170px;
+      width: 180px;
       animation: drive 8.5s linear infinite;
       filter: drop-shadow(0 14px 22px rgba(0,0,0,.55));
       z-index:1;
     }
     .truck2{
       position:absolute;
-      left: -220px;
-      top: 40px;
-      width: 140px;
+      left: -240px;
+      top: 42px;
+      width: 145px;
       opacity:.55;
-      animation: drive 11s linear infinite;
-      animation-delay: -4.2s;
+      animation: drive 11.2s linear infinite;
+      animation-delay: -4.6s;
       filter: blur(.2px) drop-shadow(0 10px 18px rgba(0,0,0,.45));
       z-index:1;
     }
-    @keyframes drive{
-      0%{ transform: translateX(0); }
-      100%{ transform: translateX(calc(100% + 540px)); }
-    }
+    @keyframes drive{ to{ transform: translateX(calc(100% + 580px)); } }
     @media (prefers-reduced-motion: reduce){
       .truck,.truck2{ animation:none; left: 18px; }
+      .logo-wrap:before{ animation:none; }
+      .btn.primary:after{ animation:none; }
+      .reveal{ opacity:1; transform:none; }
     }
 
-    /* ===== Strip ===== */
+    /* Strip */
     .strip{
       margin-top: 16px;
       display:grid;
@@ -530,7 +520,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(135deg, rgba(5,8,18,.42), rgba(5,8,18,.72));
+      background: linear-gradient(135deg, rgba(5,7,15,.42), rgba(5,7,15,.74));
       pointer-events:none;
     }
     .strip .img img{
@@ -541,7 +531,7 @@
       transform: scale(1.02);
     }
 
-    /* ===== Grids ===== */
+    /* Grids */
     .grid3{ display:grid; gap: 14px; grid-template-columns: repeat(3,1fr); }
     .grid2{ display:grid; gap: 14px; grid-template-columns: repeat(2,1fr); }
 
@@ -554,11 +544,11 @@
     }
     .tile:hover{
       transform: translateY(-2px);
-      border-color: rgba(59,130,246,.28);
-      background: rgba(16,24,44,.90);
+      border-color: rgba(34,211,238,.24);
+      background: rgba(16,24,44,.92);
     }
-    .tile h3{ margin: 8px 0 6px; font-weight: 1000; letter-spacing:-.2px; }
-    .tile p{ margin:0; color: rgba(167,182,214,.95); font-weight: 780; }
+    .tile h3{ margin: 8px 0 6px; font-weight: 900; letter-spacing:-.2px; }
+    .tile p{ margin:0; color: rgba(167,182,214,.96); font-weight: 600; }
 
     .tile:before{
       content:"";
@@ -568,12 +558,12 @@
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--teal), var(--blue), var(--green));
-      box-shadow: 0 0 0 7px rgba(34,211,238,.10);
+      background: linear-gradient(135deg, var(--teal), var(--orange));
+      box-shadow: 0 0 0 7px rgba(251,146,60,.10);
       opacity:.95;
     }
 
-    /* ===== How it works (no overlap) ===== */
+    /* How it works (fixed overlap by design) */
     .step-card{
       padding: 18px;
       display:flex;
@@ -582,27 +572,27 @@
     }
     .step-badge{
       flex: 0 0 auto;
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 16px;
       display:grid;
       place-items:center;
-      font-weight: 1100;
-      background: linear-gradient(135deg, rgba(34,211,238,.22), rgba(59,130,246,.18));
-      border: 1px solid rgba(34,211,238,.38);
-      box-shadow: 0 0 0 6px rgba(34,211,238,.10), 0 12px 32px rgba(59,130,246,.12);
-      color: var(--text);
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(34,211,238,.24), rgba(251,146,60,.20));
+      border: 1px solid rgba(251,146,60,.35);
+      box-shadow: var(--glowA);
+      color: var(--ink);
     }
     .step-body h3{ margin: 0 0 6px; }
     .step-body p{ margin:0; }
 
-    /* ===== Desk operator ===== */
+    /* Desk operator (person with desk) */
     .desk-card{
       display:flex;
       gap: 16px;
       align-items:center;
       padding: 18px;
-      background: linear-gradient(135deg, rgba(16,24,44,.90), rgba(16,24,44,.70));
+      background: linear-gradient(135deg, rgba(16,24,44,.92), rgba(16,24,44,.72));
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 22px;
       box-shadow: var(--shadowSoft);
@@ -612,17 +602,17 @@
     .desk-card:before{
       content:"";
       position:absolute;
-      inset:-140px;
+      inset:-160px;
       background:
-        radial-gradient(620px 300px at 18% 18%, rgba(34,197,94,.14), transparent 60%),
-        radial-gradient(620px 300px at 82% 78%, rgba(168,85,247,.12), transparent 60%),
-        radial-gradient(620px 300px at 70% 30%, rgba(34,211,238,.10), transparent 60%);
+        radial-gradient(620px 300px at 18% 18%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(620px 300px at 82% 78%, rgba(251,146,60,.10), transparent 60%);
       pointer-events:none;
     }
     .desk-card > *{ position:relative; z-index:1; }
+
     .desk-illo{
-      width: 140px;
-      height: 120px;
+      width: 150px;
+      height: 125px;
       flex: 0 0 auto;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.12);
@@ -631,16 +621,8 @@
       place-items:center;
       overflow:hidden;
     }
-    .desk-title{
-      font-weight: 1100;
-      margin: 0 0 6px;
-      letter-spacing: -.2px;
-    }
-    .desk-text{
-      margin:0;
-      color: rgba(167,182,214,.95);
-      font-weight: 850;
-    }
+    .desk-title{ font-weight: 900; margin: 0 0 6px; letter-spacing: -.2px; }
+    .desk-text{ margin:0; color: rgba(167,182,214,.96); font-weight: 650; }
 
     /* FAQ */
     .faq details{
@@ -651,12 +633,12 @@
       transition: border-color .18s ease, background .18s ease;
     }
     .faq details[open]{
-      border-color: rgba(34,211,238,.32);
+      border-color: rgba(251,146,60,.28);
       background: rgba(255,255,255,.055);
     }
     .faq summary{
       cursor:pointer;
-      font-weight: 1000;
+      font-weight: 900;
       letter-spacing:-.2px;
       list-style:none;
     }
@@ -665,13 +647,13 @@
       content:"▸";
       display:inline-block;
       margin-right:10px;
-      color: var(--teal);
+      color: var(--orange);
       transform: translateY(-1px);
     }
     .faq details[open] summary:before{ content:"▾"; }
-    .faq p{ margin: 10px 0 0; color: rgba(167,182,214,.95); font-weight: 800; }
+    .faq p{ margin: 10px 0 0; color: rgba(167,182,214,.96); font-weight: 650; }
 
-    /* Contact (two-column premium) */
+    /* Contact */
     .contact-grid{
       display:grid;
       grid-template-columns: 0.95fr 1.05fr;
@@ -698,34 +680,35 @@
       padding: 10px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,.045);
-      font-weight: 1000;
+      font-weight: 900;
     }
     .pill span{ display:flex; flex-direction:column; line-height:1.05; }
-    .pill small{ color: rgba(167,182,214,.95); font-weight: 850; margin-top: 4px; }
+    .pill small{ color: rgba(167,182,214,.96); font-weight: 700; margin-top: 4px; }
 
     /* Form */
     .form{ display:grid; gap: 10px; }
     .form label{
       display:block;
       margin-bottom: 6px;
-      color: rgba(167,182,214,.95);
+      color: rgba(167,182,214,.96);
       font-size: 13px;
-      font-weight: 1000;
+      font-weight: 900;
       letter-spacing:.02em;
     }
     .form .row{ display:grid; gap: 10px; grid-template-columns: 1fr 1fr; }
-    .input, .textarea{
+    .input, .textarea, .select{
       width: 100%;
       padding: 12px 14px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.04);
-      color: var(--text);
+      color: var(--ink);
       outline:none;
       transition: box-shadow .15s ease, border-color .15s ease;
-      font-weight: 780;
+      font-weight: 650;
+      font-family: inherit;
     }
-    .input:focus, .textarea:focus{
+    .input:focus, .textarea:focus, .select:focus{
       border-color: var(--focus);
       box-shadow: 0 0 0 4px rgba(34,211,238,.14);
     }
@@ -738,22 +721,22 @@
       border-radius: 16px;
       border: 1px solid rgba(34,197,94,.38);
       background: rgba(34,197,94,.10);
-      color: var(--text);
-      font-weight: 1100;
+      color: var(--ink);
+      font-weight: 900;
       box-shadow: 0 0 26px rgba(34,197,94,.08);
     }
     .form-status.show{ display:block; }
     .form-status small{
       display:block;
       margin-top: 4px;
-      color: rgba(167,182,214,.95);
-      font-weight: 850;
+      color: rgba(167,182,214,.96);
+      font-weight: 700;
     }
 
     footer{
       padding: 30px 0 46px;
-      color: rgba(167,182,214,.95);
-      font-weight: 900;
+      color: rgba(167,182,214,.96);
+      font-weight: 800;
       font-size: 14px;
     }
 
@@ -776,26 +759,32 @@
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(16,24,44,.95);
       box-shadow: var(--shadowSoft);
-      font-weight: 1100;
+      font-weight: 900;
       font-size: 14px;
       white-space: nowrap;
       transition: transform .15s ease, border-color .15s ease, filter .15s ease;
       backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    .float-actions a:after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background: radial-gradient(220px 120px at 20% 20%, rgba(34,211,238,.12), transparent 60%),
+                  radial-gradient(220px 120px at 80% 70%, rgba(251,146,60,.10), transparent 60%);
+      pointer-events:none;
     }
     .float-actions a:hover{
       transform: translateY(-1px);
-      border-color: rgba(34,211,238,.32);
+      border-color: rgba(251,146,60,.26);
       filter: saturate(1.08);
     }
-    .float-actions a span{
-      display:flex;
-      flex-direction:column;
-      line-height: 1.08;
-    }
+    .float-actions a span{ display:flex; flex-direction:column; line-height: 1.08; }
     .float-actions a span small{
       margin-top: 2px;
-      color: rgba(167,182,214,.95);
-      font-weight: 900;
+      color: rgba(167,182,214,.96);
+      font-weight: 800;
       font-size: 12px;
     }
 
@@ -805,14 +794,7 @@
       transform: translateY(10px);
       transition: opacity .55s ease, transform .55s ease;
     }
-    .reveal.show{
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce){
-      .reveal{ opacity:1; transform:none; }
-      .logo-wrap:before{ animation:none; }
-    }
+    .reveal.show{ opacity: 1; transform: translateY(0); }
 
     /* Responsive */
     @media (max-width: 980px){
@@ -820,7 +802,7 @@
       .strip{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
-      h1{ font-size: 36px; }
+      h1{ font-size: 38px; }
       .form .row{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
       .contact-grid{ grid-template-columns: 1fr; }
@@ -829,8 +811,8 @@
     }
     @media (max-width: 520px){
       .wrap{ padding: 18px; }
-      .logo-wrap{ width: 60px; height: 60px; border-radius: 18px; }
-      .brand-text strong{ font-size: 20px; }
+      .logo-wrap{ width: 62px; height: 62px; border-radius: 18px; }
+      .brand-text strong{ font-size: 22px; }
       .links a{ padding: 6px 8px; }
       .float-actions{ right: 12px; bottom: 12px; }
       .float-actions a{ padding: 10px 14px; font-size: 13px; }
@@ -840,7 +822,7 @@
 
 <body>
 
-<!-- Premium top success bar -->
+<!-- Success bar -->
 <div class="topbar" id="topbar" role="status" aria-live="polite">
   <div class="wrap">
     <div class="msg">
@@ -855,7 +837,9 @@
   <div class="wrap nav">
     <div class="brand">
       <div class="logo-wrap" title="Legacy Path Logistics">
-        <img src="logo.png" alt="Legacy Path Logistics logo" />
+        <!-- Works with logo.png OR Logo.png -->
+        <img id="brandLogo" src="logo.png" alt="Legacy Path Logistics logo"
+             onerror="this.onerror=null;this.src='Logo.png';" />
       </div>
       <div class="brand-text">
         <strong>Legacy Path Logistics</strong>
@@ -879,7 +863,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="card hero-left reveal">
-      <div class="kicker">Premium Freight Dispatch Services</div>
+      <div class="kicker">Bold Logistics • High-End Tech</div>
       <h1>Stay loaded. Stay organized. <span class="grad">Drive with confidence.</span></h1>
       <p class="sub">
         We help owner-operators and small fleets find strong loads, negotiate better rates,
@@ -900,14 +884,14 @@
 
       <div class="divider"></div>
 
-      <!-- Moving Truck -->
+      <!-- Moving trucks -->
       <div class="road" aria-label="Moving trucks">
         <!-- Truck SVG 1 -->
         <svg class="truck" viewBox="0 0 220 110" aria-hidden="true">
           <defs>
             <linearGradient id="cab" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#22d3ee"/>
-              <stop offset="1" stop-color="#3b82f6"/>
+              <stop offset="1" stop-color="#fb923c"/>
             </linearGradient>
             <linearGradient id="trailer" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#0f1a33"/>
@@ -918,12 +902,12 @@
           <rect x="22" y="40" width="78" height="8" rx="4" fill="rgba(34,211,238,.22)"/>
           <path d="M142 38h34c10 0 18 8 18 18v16H142V38z" fill="url(#cab)" stroke="rgba(255,255,255,.18)"/>
           <rect x="156" y="44" width="18" height="12" rx="3" fill="rgba(255,255,255,.22)"/>
-          <circle cx="52" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
-          <circle cx="52" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
-          <circle cx="118" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
-          <circle cx="118" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
-          <circle cx="168" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
-          <circle cx="168" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
+          <circle cx="52" cy="78" r="12" fill="#0b1224" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="52" cy="78" r="5" fill="rgba(251,146,60,.25)"/>
+          <circle cx="118" cy="78" r="12" fill="#0b1224" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="118" cy="78" r="5" fill="rgba(251,146,60,.25)"/>
+          <circle cx="168" cy="78" r="12" fill="#0b1224" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="168" cy="78" r="5" fill="rgba(251,146,60,.25)"/>
           <ellipse cx="110" cy="92" rx="92" ry="7" fill="rgba(0,0,0,.35)"/>
         </svg>
 
@@ -931,20 +915,20 @@
         <svg class="truck2" viewBox="0 0 220 110" aria-hidden="true">
           <defs>
             <linearGradient id="cab2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#22c55e"/>
+              <stop offset="0" stop-color="#fb923c"/>
               <stop offset="1" stop-color="#22d3ee"/>
             </linearGradient>
           </defs>
           <rect x="10" y="32" width="125" height="36" rx="10" fill="rgba(16,24,44,.9)" stroke="rgba(255,255,255,.12)"/>
           <path d="M140 40h30c10 0 18 8 18 18v10h-48V40z" fill="url(#cab2)" stroke="rgba(255,255,255,.14)"/>
-          <circle cx="52" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
-          <circle cx="116" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
-          <circle cx="164" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="52" cy="78" r="11" fill="#0b1224" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="116" cy="78" r="11" fill="#0b1224" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="164" cy="78" r="11" fill="#0b1224" stroke="rgba(255,255,255,.16)"/>
           <ellipse cx="106" cy="92" rx="86" ry="6" fill="rgba(0,0,0,.28)"/>
         </svg>
       </div>
 
-      <!-- Truck image strip -->
+      <!-- Image strip -->
       <div class="strip" aria-label="Trucking imagery">
         <div class="img">
           <img alt="Truck on highway"
@@ -974,7 +958,7 @@
         <strong>Driver-first mindset</strong>
         <span>We protect your time, rate, and schedule</span>
       </div>
-      <div class="stat" style="border-color: rgba(34,197,94,.42); background: rgba(34,197,94,.12);">
+      <div class="stat" style="border-color: rgba(251,146,60,.34); background: rgba(251,146,60,.10);">
         <strong>Simple onboarding</strong>
         <span>Get started in minutes</span>
       </div>
@@ -1028,41 +1012,43 @@
     </div>
   </section>
 
-  <!-- OPERATIONS (DESK PERSON) -->
+  <!-- OPERATIONS (person with desk) -->
   <section id="ops" class="section reveal">
     <div class="kicker">Operations Desk</div>
 
     <div class="desk-card">
       <div class="desk-illo" aria-hidden="true">
+        <!-- Person + desk illustration -->
         <svg viewBox="0 0 220 170" width="120" height="90">
           <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <linearGradient id="p1" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/>
-              <stop offset="1" stop-color="#3b82f6" stop-opacity=".40"/>
+              <stop offset="1" stop-color="#fb923c" stop-opacity=".40"/>
             </linearGradient>
-            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#22c55e" stop-opacity=".55"/>
-              <stop offset="1" stop-color="#a855f7" stop-opacity=".25"/>
+            <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3b82f6" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#22c55e" stop-opacity=".25"/>
             </linearGradient>
           </defs>
           <rect x="10" y="12" width="200" height="146" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)"/>
-          <circle cx="62" cy="58" r="20" fill="url(#g1)"/>
-          <circle cx="168" cy="40" r="16" fill="url(#g2)"/>
-          <rect x="118" y="60" width="68" height="42" rx="8" fill="rgba(16,24,44,.92)" stroke="rgba(255,255,255,.14)"/>
-          <rect x="126" y="68" width="52" height="14" rx="7" fill="rgba(34,211,238,.24)"/>
-          <rect x="132" y="88" width="40" height="6" rx="3" fill="rgba(59,130,246,.26)"/>
-          <circle cx="78" cy="78" r="16" fill="rgba(238,244,255,.90)"/>
-          <rect x="58" y="94" width="40" height="30" rx="12" fill="rgba(34,211,238,.18)" stroke="rgba(255,255,255,.14)"/>
-          <path d="M58 108c10 10 30 10 40 0" stroke="rgba(238,244,255,.78)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <rect x="32" y="122" width="156" height="16" rx="8" fill="rgba(255,255,255,.10)" />
-          <rect x="40" y="134" width="140" height="10" rx="5" fill="rgba(16,24,44,.85)" stroke="rgba(255,255,255,.12)"/>
+          <circle cx="60" cy="55" r="20" fill="url(#p1)"/>
+          <rect x="45" y="78" width="48" height="36" rx="14" fill="rgba(34,211,238,.14)" stroke="rgba(255,255,255,.14)"/>
+          <path d="M48 98c12 12 30 12 42 0" stroke="rgba(238,244,255,.78)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+          <rect x="118" y="58" width="78" height="48" rx="10" fill="rgba(16,24,44,.92)" stroke="rgba(255,255,255,.14)"/>
+          <rect x="126" y="68" width="62" height="14" rx="7" fill="rgba(251,146,60,.20)"/>
+          <rect x="132" y="90" width="48" height="6" rx="3" fill="rgba(34,211,238,.22)"/>
+          <circle cx="182" cy="42" r="16" fill="url(#p2)"/>
+
+          <rect x="28" y="124" width="168" height="16" rx="8" fill="rgba(255,255,255,.10)"/>
+          <rect x="40" y="138" width="140" height="10" rx="5" fill="rgba(16,24,44,.85)" stroke="rgba(255,255,255,.12)"/>
         </svg>
       </div>
 
       <div>
         <h3 class="desk-title">Real dispatch support — like a true operations desk</h3>
         <p class="desk-text">
-          You’ll get clear updates, fast calls to brokers, and organized paperwork — handled like a professional back-office team.
+          Clear updates, fast calls to brokers, organized paperwork, and driver-first planning — handled like a professional back-office team.
         </p>
       </div>
     </div>
@@ -1074,18 +1060,18 @@
     <div class="grid3">
       <div class="card tile">
         <h3>“Fast communication.”</h3>
-        <p class="quote">“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
-        <p style="margin-top:10px;color:rgba(167,182,214,.95);font-weight:1000;">— Owner-Operator</p>
+        <p style="margin:0;color:rgba(167,182,214,.96);font-weight:650;">“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
+        <p style="margin-top:10px;color:rgba(167,182,214,.96);font-weight:900;">— Owner-Operator</p>
       </div>
       <div class="card tile">
         <h3>“Better planning.”</h3>
-        <p class="quote">“Load planning helped me reduce deadhead and keep my week organized.”</p>
-        <p style="margin-top:10px;color:rgba(167,182,214,.95);font-weight:1000;">— Small Fleet</p>
+        <p style="margin:0;color:rgba(167,182,214,.96);font-weight:650;">“Load planning helped me reduce deadhead and keep my week organized.”</p>
+        <p style="margin-top:10px;color:rgba(167,182,214,.96);font-weight:900;">— Small Fleet</p>
       </div>
       <div class="card tile">
         <h3>“Professional paperwork.”</h3>
-        <p class="quote">“Carrier setup and rate confirmations were handled clean and on time.”</p>
-        <p style="margin-top:10px;color:rgba(167,182,214,.95);font-weight:1000;">— Dispatch Client</p>
+        <p style="margin:0;color:rgba(167,182,214,.96);font-weight:650;">“Carrier setup and rate confirmations were handled clean and on time.”</p>
+        <p style="margin-top:10px;color:rgba(167,182,214,.96);font-weight:900;">— Dispatch Client</p>
       </div>
     </div>
   </section>
@@ -1117,8 +1103,8 @@
   <section id="contact" class="section reveal">
     <div class="card tile">
       <div class="kicker">Contact</div>
-      <h2 style="margin:8px 0 6px; font-weight:1100; letter-spacing:-.2px;">Let’s get you dispatched.</h2>
-      <p style="margin:0;color:rgba(167,182,214,.95);font-weight:900;">Call/text/email and we’ll respond quickly.</p>
+      <h2 style="margin:8px 0 6px; font-weight:900; letter-spacing:-.2px;">Let’s get you dispatched.</h2>
+      <p style="margin:0;color:rgba(167,182,214,.96);font-weight:800;">Call/text/email and we’ll respond quickly.</p>
 
       <div class="form-status" id="formStatus">
         ✅ Message sent. We’ll reach out shortly.
@@ -1127,7 +1113,7 @@
 
       <div class="contact-grid">
         <div class="contact-left">
-          <div style="font-weight:1100; letter-spacing:-.2px; font-size:16px;">Direct contact</div>
+          <div style="font-weight:900; letter-spacing:-.2px; font-size:16px;">Direct contact</div>
           <div class="contact-pills">
             <div class="pill">📞 <span>Phone <small>+1 (910) 446-3125</small></span></div>
             <div class="pill">📧 <span>Email <small>legacypathlogistic.ops@gmail.com</small></span></div>
@@ -1136,10 +1122,10 @@
 
           <div class="cta" style="margin-top:14px;">
             <a class="btn" href="mailto:legacypathlogistic.ops@gmail.com?subject=Dispatch%20Support%20Request">Email Us</a>
-            <a class="btn" href="tel:+19104463125">Call Now</a>
+            <a class="btn secondary" href="tel:+19104463125">Call Now</a>
           </div>
 
-          <p style="margin-top:14px;color:rgba(167,182,214,.95);font-size:13px;font-weight:900;">
+          <p style="margin-top:14px;color:rgba(167,182,214,.96);font-size:13px;font-weight:800;">
             *We do not provide legal or tax advice. Carrier remains responsible for compliance and operations.
           </p>
         </div>
@@ -1157,6 +1143,25 @@
               </div>
             </div>
 
+            <div class="row">
+              <div>
+                <label for="equip">Equipment Type</label>
+                <select class="select" id="equip" name="equipment">
+                  <option value="">Select…</option>
+                  <option>Dry Van</option>
+                  <option>Reefer</option>
+                  <option>Flatbed</option>
+                  <option>Stepdeck</option>
+                  <option>Power Only</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="lanes">Preferred Lanes</label>
+                <input class="input" id="lanes" name="lanes" type="text" placeholder="e.g., NC → TX, GA → FL">
+              </div>
+            </div>
+
             <div>
               <label for="email">Email</label>
               <input class="input" id="email" name="email" type="email" placeholder="you@email.com" required>
@@ -1164,7 +1169,7 @@
 
             <div>
               <label for="message">Message</label>
-              <textarea class="textarea" id="message" name="message" placeholder="Equipment type + preferred lanes + start date…" required></textarea>
+              <textarea class="textarea" id="message" name="message" placeholder="Start date, weekly goal, special requirements…" required></textarea>
             </div>
 
             <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
@@ -1211,7 +1216,7 @@
     revealEls.forEach(el => el.classList.add('show'));
   }
 
-  // Formspree AJAX (safe)
+  // Success bar + Formspree AJAX
   const form = document.getElementById('leadForm');
   const statusBox = document.getElementById('formStatus');
   const topbar = document.getElementById('topbar');
@@ -1250,8 +1255,8 @@
       } catch (err) {
         if (statusBox) {
           statusBox.classList.add('show');
-          statusBox.style.borderColor = 'rgba(168,85,247,.50)';
-          statusBox.style.background = 'rgba(168,85,247,.16)';
+          statusBox.style.borderColor = 'rgba(251,146,60,.45)';
+          statusBox.style.background = 'rgba(251,146,60,.12)';
           statusBox.innerHTML = '⚠️ Something went wrong. Please try again, or call/text us using the buttons.<small>Tip: refresh the page and retry.</small>';
         }
         console.error(err);
