@@ -124,7 +124,26 @@
     }
     .pill small{display:block; font-weight:600; color:var(--muted)}
 
-    /* --- Upgrade: background hero image + floating actions (DESKTOP + MOBILE) --- */
+    /* Contact Form */
+    .form{ margin-top:14px; display:grid; gap:10px; }
+    .form label{ font-weight:800; font-size:13px; color:var(--muted); display:block; margin-bottom:6px; }
+    .form .row{ display:grid; gap:10px; grid-template-columns: 1fr 1fr; }
+    .input,.textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      outline:none;
+    }
+    .textarea{ min-height:110px; resize:vertical; }
+    .input:focus,.textarea:focus{
+      border-color: rgba(56,189,248,.55);
+      box-shadow: 0 0 0 4px rgba(56,189,248,.12);
+    }
+
+    /* Upgrade: hero background image */
     .hero-left{
       position: relative;
       overflow: hidden;
@@ -143,6 +162,7 @@
     }
     .hero-left > *{ position:relative; z-index:1; }
 
+    /* Floating actions */
     .float-actions{
       position: fixed;
       right: 18px;
@@ -184,16 +204,9 @@
       .grid3{grid-template-columns:1fr}
       .grid2{grid-template-columns:1fr}
       h1{font-size:32px}
-
-      /* make floating buttons a bit smaller on mobile */
-      .float-actions{
-        right: 12px;
-        bottom: 12px;
-      }
-      .float-actions a{
-        padding: 10px 14px;
-        font-size: 13px;
-      }
+      .form .row{ grid-template-columns: 1fr; }
+      .float-actions{ right: 12px; bottom: 12px; }
+      .float-actions a{ padding: 10px 14px; font-size: 13px; }
     }
   </style>
 </head>
@@ -363,8 +376,35 @@
         <div class="pill">📍 Service Area <small>Nationwide (US)</small></div>
       </div>
 
+      <!-- Formspree Contact Form -->
+      <form class="form" action="https://formspree.io/f/xqeddaqa" method="POST">
+        <div class="row">
+          <div>
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input class="input" id="phone" name="phone" type="tel" placeholder="(910) 000-0000">
+          </div>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" placeholder="you@email.com" required>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea class="textarea" id="message" name="message" placeholder="Tell us your equipment type + preferred lanes + start date…" required></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
+        <button class="btn primary" type="submit">Send Message</button>
+      </form>
+
       <div class="cta" style="margin-top:14px;">
-        <a class="btn primary" href="mailto:legacypathlogistic.ops@gmail.com?subject=Dispatch%20Support%20Request">Email Us</a>
+        <a class="btn" href="mailto:legacypathlogistic.ops@gmail.com?subject=Dispatch%20Support%20Request">Email Us</a>
         <a class="btn" href="tel:+19104463125">Call Now</a>
       </div>
 
@@ -404,4 +444,3 @@
 
 </body>
 </html>
-
