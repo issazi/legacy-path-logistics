@@ -124,6 +124,53 @@
       .grid3{grid-template-columns:1fr}
       .grid2{grid-template-columns:1fr}
       h1{font-size:32px}
+      /* --- Upgrade: background hero image + floating actions --- */
+.hero-left{
+  position: relative;
+  overflow: hidden;
+}
+.hero-left:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg, rgba(11,18,32,.92), rgba(11,18,32,.70)),
+    url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1600&q=60");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.1);
+  z-index:0;
+}
+.hero-left > *{ position:relative; z-index:1; }
+
+.float-actions{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  gap: 10px;
+  z-index: 999;
+}
+.float-actions a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(17,27,46,.90);
+  box-shadow: var(--shadow);
+  font-weight: 800;
+  font-size: 14px;
+}
+.float-actions a small{
+  display:block;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 12px;
+}
+.float-actions a:hover{ transform: translateY(-1px); }
+
     }
   </style>
 </head>
@@ -237,7 +284,27 @@
     </div>
   </section>
 
-  <section class="faq">
+ <section id="reviews">
+  <div class="kicker">Trusted by drivers</div>
+  <div class="grid3">
+    <div class="card tile">
+      <h3>“Fast communication.”</h3>
+      <p>“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
+      <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Owner-Operator</p>
+    </div>
+    <div class="card tile">
+      <h3>“Better planning.”</h3>
+      <p>“Load planning helped me reduce deadhead and keep my week organized.”</p>
+      <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Small Fleet</p>
+    </div>
+    <div class="card tile">
+      <h3>“Professional paperwork.”</h3>
+      <p>“Carrier setup and rate confirmations were handled clean and on time.”</p>
+      <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Dispatch Client</p>
+    </div>
+  </div>
+</section>
+ <section class="faq">
     <div class="kicker">FAQ</div>
     <div class="grid2">
       <details class="card">
@@ -292,9 +359,19 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+<div class="float-actions">
+  <!-- CHANGE THESE TWO LINKS AFTER: replace phone + sms -->
+  <a href="tel:+19104463125" aria-label="Call Legacy Path Logistics">
+    📞 <div>Call Now<small>Fast response</small></div>
+  </a>
+  <a href="sms:+19104463125" aria-label="Text Legacy Path Logistics">
+    💬 <div>Text Us<small>Send your lane</small></div>
+  </a>
+</div>
 
 </body>
 </html> 
+
 
 
 
