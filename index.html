@@ -15,16 +15,17 @@
       --text:#eef4ff;
       --muted:#a7b6d6;
 
-      /* Premium colors */
+      /* Premium palette */
       --teal:#22d3ee;
       --blue:#3b82f6;
       --green:#22c55e;
       --purple:#a855f7;
       --amber:#f59e0b;
+      --rose:#fb7185;
 
       /* UI */
-      --card: rgba(16,24,44,.82);
-      --card2: rgba(16,24,44,.60);
+      --card: rgba(16,24,44,.84);
+      --card2: rgba(16,24,44,.62);
       --border: rgba(255,255,255,.10);
       --border2: rgba(255,255,255,.14);
       --shadow: 0 22px 60px rgba(0,0,0,.48);
@@ -59,10 +60,10 @@
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 80;
+      z-index: 90;
       display:none;
       border-bottom:1px solid var(--border);
-      background: rgba(5,8,18,.72);
+      background: rgba(5,8,18,.78);
       backdrop-filter: blur(12px);
     }
     .topbar.show{ display:block; }
@@ -106,8 +107,8 @@
     header{
       position: sticky;
       top: 0;
-      z-index: 60;
-      background: rgba(5,8,18,.62);
+      z-index: 80;
+      background: rgba(5,8,18,.66);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
     }
@@ -120,18 +121,19 @@
       padding: 14px 0;
     }
 
-    /* Bigger brand */
+    /* Brand */
     .brand{
       display:flex;
       align-items:center;
       gap:14px;
-      min-width: 260px;
+      min-width: 280px;
     }
+
     .logo-wrap{
-      width:54px;
-      height:54px;
+      width:64px;
+      height:64px;
       border-radius: 18px;
-      border:1px solid var(--border);
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       box-shadow: var(--shadowSoft);
       display:grid;
@@ -139,21 +141,29 @@
       overflow:hidden;
       position:relative;
     }
+    /* Premium ring */
     .logo-wrap:before{
       content:"";
       position:absolute;
-      inset:-20px;
-      background: radial-gradient(220px 140px at 25% 20%, rgba(34,211,238,.26), transparent 60%),
-                  radial-gradient(220px 140px at 80% 70%, rgba(59,130,246,.18), transparent 60%);
+      inset:-22px;
+      background:
+        radial-gradient(260px 160px at 20% 20%, rgba(34,211,238,.30), transparent 60%),
+        radial-gradient(260px 160px at 82% 78%, rgba(59,130,246,.22), transparent 60%),
+        conic-gradient(from 210deg, rgba(34,211,238,.0), rgba(34,211,238,.26), rgba(59,130,246,.22), rgba(34,197,94,.18), rgba(34,211,238,.0));
+      filter: blur(1px);
       pointer-events:none;
+      opacity:.9;
     }
+
     .brand img{
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      padding: 6px;
+      object-fit: cover; /* makes the logo look bigger */
+      padding: 2px;
+      border-radius: 14px;
       position:relative;
-      z-index:1;
+      z-index:2;
+      background: rgba(0,0,0,.18);
     }
 
     .brand-text{
@@ -162,17 +172,17 @@
       line-height:1.05;
     }
     .brand-text strong{
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 1000;
       letter-spacing: .2px;
     }
     .brand-text small{
       color: var(--muted);
       font-weight: 800;
-      letter-spacing:.08em;
+      letter-spacing:.10em;
       text-transform: uppercase;
       font-size: 11px;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .links{
@@ -235,13 +245,13 @@
     .kicker{
       color: var(--muted);
       font-weight: 1000;
-      letter-spacing: .08em;
+      letter-spacing: .10em;
       text-transform: uppercase;
       font-size: 12px;
       margin-bottom: 10px;
     }
 
-    /* ===== Hero (with truck imagery) ===== */
+    /* ===== Hero ===== */
     .hero{
       padding: 26px 0 18px;
       display:grid;
@@ -257,13 +267,14 @@
       isolation: isolate;
     }
 
-    /* Truck background image */
     .hero-left:before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(135deg, rgba(5,8,18,.92), rgba(5,8,18,.55)),
+        radial-gradient(900px 520px at 18% 18%, rgba(34,211,238,.22), transparent 60%),
+        radial-gradient(900px 520px at 86% 22%, rgba(59,130,246,.18), transparent 60%),
+        linear-gradient(135deg, rgba(5,8,18,.92), rgba(5,8,18,.62)),
         url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1800&q=70");
       background-size: cover;
       background-position: center;
@@ -271,16 +282,13 @@
       z-index:-3;
     }
 
-    /* Subtle “truck lanes” overlay */
     .hero-left:after{
       content:"";
       position:absolute;
       inset:-80px;
       background:
-        radial-gradient(520px 260px at 14% 18%, rgba(34,211,238,.20), transparent 60%),
-        radial-gradient(520px 260px at 86% 28%, rgba(59,130,246,.18), transparent 60%),
-        repeating-linear-gradient(120deg, rgba(255,255,255,.04) 0 1px, transparent 1px 26px);
-      opacity:.55;
+        repeating-linear-gradient(120deg, rgba(255,255,255,.035) 0 1px, transparent 1px 26px);
+      opacity:.45;
       z-index:-2;
       pointer-events:none;
       transform: rotate(-2deg);
@@ -292,11 +300,19 @@
       line-height: 1.06;
       letter-spacing: -0.8px;
     }
+    .grad{
+      background:linear-gradient(135deg,var(--teal),var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
     .sub{
       color: var(--muted);
       font-size: 16.5px;
       margin: 0 0 18px;
       max-width: 58ch;
+      font-weight: 700;
     }
 
     .hero-badges{
@@ -317,6 +333,12 @@
       background: rgba(255,255,255,.06);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
       backdrop-filter: blur(6px);
+      font-weight: 900;
+    }
+    .badge i{
+      width: 10px; height: 10px; border-radius: 999px; display:inline-block;
+      background: linear-gradient(135deg, var(--green), var(--teal));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.08);
     }
 
     .cta{
@@ -326,15 +348,29 @@
       margin-top: 10px;
     }
 
+    /* Hero right */
     .hero-right{
       padding: 22px;
       display:grid;
       gap: 12px;
       background: linear-gradient(180deg, rgba(16,24,44,.82), rgba(16,24,44,.70));
+      position:relative;
+      overflow:hidden;
     }
+    .hero-right:before{
+      content:"";
+      position:absolute;
+      inset:-120px;
+      background:
+        radial-gradient(520px 260px at 20% 18%, rgba(168,85,247,.12), transparent 60%),
+        radial-gradient(520px 260px at 78% 76%, rgba(34,211,238,.12), transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .hero-right > *{ position:relative; z-index:1; }
 
     .stat{
-      padding: 14px 14px 14px 14px;
+      padding: 14px;
       border-radius: 18px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.04);
@@ -359,9 +395,59 @@
       font-weight: 800;
     }
 
-    /* ===== Premium image strip (adds trucks) ===== */
+    /* ===== Moving Truck Animation (CSS + SVG) ===== */
+    .road{
+      margin-top: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      overflow:hidden;
+      position:relative;
+      height: 84px;
+      box-shadow: var(--shadowSoft);
+    }
+    .road:before{
+      content:"";
+      position:absolute;
+      left:-20%;
+      right:-20%;
+      top: 50%;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, rgba(34,211,238,.0) 0 18px, rgba(34,211,238,.55) 18px 34px);
+      opacity:.45;
+      transform: translateY(-50%);
+      filter: blur(.2px);
+    }
+    .truck{
+      position:absolute;
+      left: -180px;
+      top: 14px;
+      width: 170px;
+      animation: drive 8.5s linear infinite;
+      filter: drop-shadow(0 14px 22px rgba(0,0,0,.55));
+    }
+    .truck2{
+      position:absolute;
+      left: -220px;
+      top: 38px;
+      width: 140px;
+      opacity:.55;
+      animation: drive 11s linear infinite;
+      animation-delay: -4.2s;
+      filter: blur(.2px) drop-shadow(0 10px 18px rgba(0,0,0,.45));
+    }
+    @keyframes drive{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(calc(100% + 520px)); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .truck,.truck2{ animation:none; left: 18px; }
+    }
+
+    /* ===== Premium image strip ===== */
     .strip{
-      margin-top: 14px;
+      margin-top: 16px;
       display:grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
@@ -379,7 +465,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(135deg, rgba(5,8,18,.45), rgba(5,8,18,.65));
+      background: linear-gradient(135deg, rgba(5,8,18,.45), rgba(5,8,18,.70));
       pointer-events:none;
     }
     .strip .img img{
@@ -409,7 +495,7 @@
     .tile h3{ margin: 8px 0 6px; font-weight: 1000; letter-spacing:-.2px; }
     .tile p{ margin:0; color: var(--muted); font-weight: 750; }
 
-    /* Little color accent in tiles */
+    /* little accent */
     .tile:before{
       content:"";
       position:absolute;
@@ -423,24 +509,72 @@
       opacity:.9;
     }
 
-    /* Steps */
-    .steps{ counter-reset: step; }
-    .step{ padding: 18px; position: relative; }
-    .step:before{
-      counter-increment: step;
-      content: counter(step);
-      position:absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 14px;
+    /* ===== How it works (FIXED — no overlap) ===== */
+    .step-card{
+      padding: 18px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .step-badge{
+      flex: 0 0 auto;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
       display:grid;
       place-items:center;
       font-weight: 1000;
       background: rgba(34,211,238,.14);
       border: 1px solid rgba(34,211,238,.35);
       box-shadow: var(--glow);
+      color: var(--text);
+    }
+    .step-body h3{ margin: 0 0 6px; }
+    .step-body p{ margin:0; }
+
+    /* ===== Desk operator (person at desk) ===== */
+    .desk-card{
+      display:flex;
+      gap: 16px;
+      align-items:center;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(16,24,44,.88), rgba(16,24,44,.70));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      box-shadow: var(--shadowSoft);
+      overflow:hidden;
+      position:relative;
+    }
+    .desk-card:before{
+      content:"";
+      position:absolute;
+      inset:-120px;
+      background:
+        radial-gradient(520px 260px at 20% 18%, rgba(34,197,94,.14), transparent 60%),
+        radial-gradient(520px 260px at 80% 78%, rgba(59,130,246,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .desk-card > *{ position:relative; z-index:1; }
+    .desk-illo{
+      width: 130px;
+      height: 110px;
+      flex: 0 0 auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .desk-title{
+      font-weight: 1000;
+      margin: 0 0 6px;
+      letter-spacing: -.2px;
+    }
+    .desk-text{
+      margin:0;
+      color: var(--muted);
+      font-weight: 800;
     }
 
     /* Reviews */
@@ -479,12 +613,24 @@
     .faq details[open] summary:before{ content:"▾"; }
     .faq p{ margin: 10px 0 0; color: var(--muted); font-weight: 760; }
 
-    /* Contact pills */
-    .contact{
+    /* Contact (two-column premium) */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .contact-left{
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+    }
+    .contact-pills{
       display:flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     .pill{
       display:inline-flex;
@@ -500,7 +646,7 @@
     .pill small{ color: var(--muted); font-weight: 820; margin-top: 4px; }
 
     /* Form */
-    .form{ margin-top: 14px; display:grid; gap: 10px; }
+    .form{ display:grid; gap: 10px; }
     .form label{
       display:block;
       margin-bottom: 6px;
@@ -518,7 +664,8 @@
       background: rgba(255,255,255,.04);
       color: var(--text);
       outline:none;
-      transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+      transition: box-shadow .15s ease, border-color .15s ease;
+      font-weight: 750;
     }
     .input:focus, .textarea:focus{
       border-color: var(--focus);
@@ -593,7 +740,7 @@
       font-size: 12px;
     }
 
-    /* Scroll reveal */
+    /* Reveal */
     .reveal{
       opacity: 0;
       transform: translateY(10px);
@@ -616,11 +763,14 @@
       h1{ font-size: 34px; }
       .form .row{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .desk-card{ flex-direction: column; align-items:flex-start; }
+      .desk-illo{ width: 100%; height: 140px; }
     }
     @media (max-width: 520px){
       .wrap{ padding: 18px; }
-      .logo-wrap{ width: 48px; height: 48px; border-radius: 16px; }
-      .brand-text strong{ font-size: 16px; }
+      .logo-wrap{ width: 56px; height: 56px; border-radius: 16px; }
+      .brand-text strong{ font-size: 18px; }
       .links a{ padding: 6px 8px; }
       .float-actions{ right: 12px; bottom: 12px; }
       .float-actions a{ padding: 10px 14px; font-size: 13px; }
@@ -645,9 +795,7 @@
   <div class="wrap nav">
     <div class="brand">
       <div class="logo-wrap" title="Legacy Path Logistics">
-        <!-- Upload your logo as: logo.png (repo root) -->
-        <img src="logo.png" alt="Legacy Path Logistics logo"
-             onerror="this.style.display='none';" />
+        <img src="logo.png" alt="Legacy Path Logistics logo" />
       </div>
       <div class="brand-text">
         <strong>Legacy Path Logistics</strong>
@@ -658,7 +806,7 @@
     <nav class="links">
       <a href="#services">Services</a>
       <a href="#how">How it Works</a>
-      <a href="#why">Why Us</a>
+      <a href="#ops">Operations</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
       <a class="btn secondary" href="#contact">Get Started</a>
@@ -672,7 +820,7 @@
   <section class="hero">
     <div class="card hero-left reveal">
       <div class="kicker">Premium Freight Dispatch Services</div>
-      <h1>Stay loaded. Stay organized. <span style="background:linear-gradient(135deg,var(--teal),var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent;">Drive with confidence.</span></h1>
+      <h1>Stay loaded. Stay organized. <span class="grad">Drive with confidence.</span></h1>
       <p class="sub">
         We help owner-operators and small fleets find strong loads, negotiate better rates,
         and keep paperwork tight — so you can focus on driving.
@@ -684,10 +832,58 @@
       </div>
 
       <div class="hero-badges">
-        <span class="badge">✅ Rate Negotiation</span>
-        <span class="badge">✅ Load Planning</span>
-        <span class="badge">✅ Carrier Setup + Docs</span>
-        <span class="badge">✅ Broker Follow-ups</span>
+        <span class="badge"><i></i> Rate Negotiation</span>
+        <span class="badge"><i></i> Load Planning</span>
+        <span class="badge"><i></i> Carrier Setup + Docs</span>
+        <span class="badge"><i></i> Broker Follow-ups</span>
+      </div>
+
+      <!-- Moving Truck -->
+      <div class="road" aria-label="Moving trucks">
+        <!-- Truck SVG 1 -->
+        <svg class="truck" viewBox="0 0 220 110" aria-hidden="true">
+          <defs>
+            <linearGradient id="cab" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/>
+              <stop offset="1" stop-color="#3b82f6"/>
+            </linearGradient>
+            <linearGradient id="trailer" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0f1a33"/>
+              <stop offset="1" stop-color="#10182c"/>
+            </linearGradient>
+          </defs>
+          <!-- Trailer -->
+          <rect x="10" y="28" width="130" height="44" rx="10" fill="url(#trailer)" stroke="rgba(255,255,255,.14)"/>
+          <rect x="22" y="40" width="78" height="8" rx="4" fill="rgba(34,211,238,.22)"/>
+          <!-- Cab -->
+          <path d="M142 38h34c10 0 18 8 18 18v16H142V38z" fill="url(#cab)" stroke="rgba(255,255,255,.18)"/>
+          <rect x="156" y="44" width="18" height="12" rx="3" fill="rgba(255,255,255,.22)"/>
+          <!-- Wheels -->
+          <circle cx="52" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="52" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
+          <circle cx="118" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="118" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
+          <circle cx="168" cy="78" r="12" fill="#0b1220" stroke="rgba(255,255,255,.18)"/>
+          <circle cx="168" cy="78" r="5" fill="rgba(34,211,238,.25)"/>
+          <!-- Ground shadow -->
+          <ellipse cx="110" cy="92" rx="92" ry="7" fill="rgba(0,0,0,.35)"/>
+        </svg>
+
+        <!-- Truck SVG 2 (background) -->
+        <svg class="truck2" viewBox="0 0 220 110" aria-hidden="true">
+          <defs>
+            <linearGradient id="cab2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22c55e"/>
+              <stop offset="1" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="32" width="125" height="36" rx="10" fill="rgba(16,24,44,.9)" stroke="rgba(255,255,255,.12)"/>
+          <path d="M140 40h30c10 0 18 8 18 18v10h-48V40z" fill="url(#cab2)" stroke="rgba(255,255,255,.14)"/>
+          <circle cx="52" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="116" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="164" cy="78" r="11" fill="#0b1220" stroke="rgba(255,255,255,.16)"/>
+          <ellipse cx="106" cy="92" rx="86" ry="6" fill="rgba(0,0,0,.28)"/>
+        </svg>
       </div>
 
       <!-- Truck image strip -->
@@ -698,7 +894,7 @@
         </div>
         <div class="img">
           <img alt="Semi truck"
-               src="https://images.unsplash.com/photo-1501706362039-c6e8095b4371?auto=format&fit=crop&w=1200&q=70">
+               src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1200&q=70">
         </div>
         <div class="img">
           <img alt="Freight logistics"
@@ -746,21 +942,80 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- HOW IT WORKS (FIXED) -->
   <section id="how" class="section reveal">
     <div class="kicker">How it works</div>
-    <div class="grid3 steps">
-      <div class="card tile step">
-        <h3>1) Quick Setup</h3>
-        <p>Send your MC/DOT + equipment type + preferred lanes.</p>
+    <div class="grid3">
+      <div class="card tile step-card">
+        <div class="step-badge">1</div>
+        <div class="step-body">
+          <h3>Quick Setup</h3>
+          <p>Send your MC/DOT, equipment type, home base, and preferred lanes.</p>
+        </div>
       </div>
-      <div class="card tile step">
-        <h3>2) We Find & Negotiate</h3>
-        <p>We search, call brokers, negotiate, then send you top options.</p>
+      <div class="card tile step-card">
+        <div class="step-badge">2</div>
+        <div class="step-body">
+          <h3>We Find & Negotiate</h3>
+          <p>We search, call brokers, negotiate, then send you top load options.</p>
+        </div>
       </div>
-      <div class="card tile step">
-        <h3>3) You Drive</h3>
-        <p>Once booked, we help keep everything on track — pickup to delivery.</p>
+      <div class="card tile step-card">
+        <div class="step-badge">3</div>
+        <div class="step-body">
+          <h3>You Drive</h3>
+          <p>Once booked, we help keep everything on track — pickup to delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATIONS (PERSON AT DESK) -->
+  <section id="ops" class="section reveal">
+    <div class="kicker">Operations Desk</div>
+
+    <div class="desk-card">
+      <div class="desk-illo" aria-hidden="true">
+        <!-- Simple built-in SVG: person at desk -->
+        <svg viewBox="0 0 220 170" width="120" height="90">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#3b82f6" stop-opacity=".35"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22c55e" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#22d3ee" stop-opacity=".25"/>
+            </linearGradient>
+          </defs>
+
+          <!-- background -->
+          <rect x="10" y="12" width="200" height="146" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)"/>
+          <circle cx="62" cy="58" r="20" fill="url(#g1)"/>
+          <circle cx="168" cy="40" r="16" fill="url(#g2)"/>
+
+          <!-- monitor -->
+          <rect x="118" y="60" width="68" height="42" rx="8" fill="rgba(16,24,44,.92)" stroke="rgba(255,255,255,.14)"/>
+          <rect x="126" y="68" width="52" height="14" rx="7" fill="rgba(34,211,238,.22)"/>
+          <rect x="132" y="88" width="40" height="6" rx="3" fill="rgba(59,130,246,.22)"/>
+          <rect x="146" y="104" width="12" height="8" rx="3" fill="rgba(255,255,255,.16)"/>
+
+          <!-- person -->
+          <circle cx="78" cy="78" r="16" fill="rgba(238,244,255,.85)"/>
+          <rect x="58" y="94" width="40" height="30" rx="12" fill="rgba(34,211,238,.18)" stroke="rgba(255,255,255,.14)"/>
+          <path d="M58 108c10 10 30 10 40 0" stroke="rgba(238,244,255,.75)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+          <!-- desk -->
+          <rect x="32" y="122" width="156" height="16" rx="8" fill="rgba(255,255,255,.10)" />
+          <rect x="40" y="134" width="140" height="10" rx="5" fill="rgba(16,24,44,.85)" stroke="rgba(255,255,255,.12)"/>
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="desk-title">Real dispatch support — like a true operations desk</h3>
+        <p class="desk-text">
+          You’ll get clear updates, fast calls to brokers, and organized paperwork — handled like a professional back-office team.
+        </p>
       </div>
     </div>
   </section>
@@ -829,54 +1084,61 @@
   <section id="contact" class="section reveal">
     <div class="card tile">
       <div class="kicker">Contact</div>
-      <h2 style="margin:8px 0 4px; font-weight:1000; letter-spacing:-.2px;">Let’s get you dispatched.</h2>
+      <h2 style="margin:8px 0 6px; font-weight:1000; letter-spacing:-.2px;">Let’s get you dispatched.</h2>
       <p style="margin:0;color:var(--muted);font-weight:800;">Call/text/email and we’ll respond quickly.</p>
-
-      <div class="contact">
-        <div class="pill">📞 <span>Phone <small>+1 (910) 446-3125</small></span></div>
-        <div class="pill">📧 <span>Email <small>legacypathlogistic.ops@gmail.com</small></span></div>
-        <div class="pill">📍 <span>Service Area <small>Nationwide (US)</small></span></div>
-      </div>
 
       <div class="form-status" id="formStatus">
         ✅ Message sent. We’ll reach out shortly.
         <small>If you need fast help, use the Call/Text buttons.</small>
       </div>
 
-      <form class="form" id="leadForm" action="https://formspree.io/f/xqeddaqa" method="POST">
-        <div class="row">
-          <div>
-            <label for="name">Name</label>
-            <input class="input" id="name" name="name" type="text" placeholder="Your name" required>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div style="font-weight:1000; letter-spacing:-.2px; font-size:16px;">Direct contact</div>
+          <div class="contact-pills">
+            <div class="pill">📞 <span>Phone <small>+1 (910) 446-3125</small></span></div>
+            <div class="pill">📧 <span>Email <small>legacypathlogistic.ops@gmail.com</small></span></div>
+            <div class="pill">📍 <span>Service Area <small>Nationwide (US)</small></span></div>
           </div>
-          <div>
-            <label for="phone">Phone</label>
-            <input class="input" id="phone" name="phone" type="tel" placeholder="(910) 000-0000">
+
+          <div class="cta" style="margin-top:14px;">
+            <a class="btn" href="mailto:legacypathlogistic.ops@gmail.com?subject=Dispatch%20Support%20Request">Email Us</a>
+            <a class="btn" href="tel:+19104463125">Call Now</a>
           </div>
+
+          <p style="margin-top:14px;color:var(--muted);font-size:13px;font-weight:800;">
+            *We do not provide legal or tax advice. Carrier remains responsible for compliance and operations.
+          </p>
         </div>
 
         <div>
-          <label for="email">Email</label>
-          <input class="input" id="email" name="email" type="email" placeholder="you@email.com" required>
+          <form class="form" id="leadForm" action="https://formspree.io/f/xqeddaqa" method="POST">
+            <div class="row">
+              <div>
+                <label for="name">Name</label>
+                <input class="input" id="name" name="name" type="text" placeholder="Your name" required>
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input class="input" id="phone" name="phone" type="tel" placeholder="(910) 000-0000">
+              </div>
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@email.com" required>
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea class="textarea" id="message" name="message" placeholder="Equipment type + preferred lanes + start date…" required></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
+            <button class="btn primary" type="submit" id="submitBtn">Send Message</button>
+          </form>
         </div>
-
-        <div>
-          <label for="message">Message</label>
-          <textarea class="textarea" id="message" name="message" placeholder="Equipment type + preferred lanes + start date…" required></textarea>
-        </div>
-
-        <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
-        <button class="btn primary" type="submit" id="submitBtn">Send Message</button>
-      </form>
-
-      <div class="cta" style="margin-top:14px;">
-        <a class="btn" href="mailto:legacypathlogistic.ops@gmail.com?subject=Dispatch%20Support%20Request">Email Us</a>
-        <a class="btn" href="tel:+19104463125">Call Now</a>
       </div>
-
-      <p style="margin-top:14px;color:var(--muted);font-size:13px;font-weight:800;">
-        *We do not provide legal or tax advice. Carrier remains responsible for compliance and operations.
-      </p>
     </div>
   </section>
 
@@ -900,7 +1162,7 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Scroll reveal
+  // Reveal
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     for (const e of entries){
@@ -909,7 +1171,7 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
-  // Success bar + Formspree AJAX + auto-scroll
+  // Success bar + Formspree AJAX
   const form = document.getElementById('leadForm');
   const statusBox = document.getElementById('formStatus');
   const topbar = document.getElementById('topbar');
@@ -923,7 +1185,6 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
-    // reset status styles (in case of previous error)
     statusBox.style.borderColor = 'rgba(34,197,94,.35)';
     statusBox.style.background = 'rgba(34,197,94,.10)';
     statusBox.innerHTML = '✅ Message sent. We’ll reach out shortly.<small>If you need fast help, use the Call/Text buttons.</small>';
@@ -940,7 +1201,6 @@
       statusBox.classList.add('show');
       topbar.classList.add('show');
       form.reset();
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch(err){
       statusBox.classList.add('show');
