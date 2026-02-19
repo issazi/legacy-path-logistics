@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Legacy Path Logistics | Dispatch Services</title>
+  <meta name="description" content="Reliable freight dispatch services for owner-operators and small fleets. Stay loaded, stay organized." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111b2e;
+      --muted:#9fb0d0;
+      --text:#e9efff;
+      --accent:#38bdf8;
+      --accent2:#22c55e;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 400px at 20% 10%, rgba(56,189,248,.18), transparent),
+                  radial-gradient(900px 400px at 90% 30%, rgba(34,197,94,.14), transparent),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px;}
+    header{
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      background:rgba(11,18,32,.70); border-bottom:1px solid var(--border);
+      z-index:20;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700;}
+    .dot{width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    .links{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;}
+    .links a{color:var(--muted); font-weight:600; font-size:14px}
+    .links a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:14px; font-weight:700;
+      border:1px solid var(--border); background:rgba(255,255,255,.06);
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent),#4f46e5);
+      border:none;
+      box-shadow: 0 10px 30px rgba(56,189,248,.25);
+    }
+    .btn.secondary{
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.35);
+    }
+    .hero{
+      padding:34px 0 18px;
+      display:grid; gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
+    }
+    .card{
+      background:rgba(17,27,46,.82);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hero-left{padding:28px;}
+    .kicker{color:var(--muted); font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:12px}
+    h1{margin:10px 0 10px; font-size:38px; line-height:1.1}
+    .sub{color:var(--muted); font-size:16px; margin:0 0 18px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .badge{
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border); padding:8px 10px; border-radius:999px;
+      background:rgba(255,255,255,.04);
+    }
+    .hero-right{padding:22px; display:grid; gap:12px}
+    .stat{padding:14px; border-radius:16px; border:1px solid var(--border); background:rgba(255,255,255,.04)}
+    .stat strong{display:block; font-size:18px}
+    .stat span{color:var(--muted); font-size:13px}
+    section{padding:18px 0}
+    .grid3{display:grid; gap:14px; grid-template-columns:repeat(3,1fr)}
+    .grid2{display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
+    .tile{padding:18px}
+    .tile h3{margin:8px 0 6px}
+    .tile p{margin:0; color:var(--muted)}
+    .steps{counter-reset:step}
+    .step{padding:18px; position:relative}
+    .step:before{
+      counter-increment:step;
+      content:counter(step);
+      position:absolute; top:16px; right:16px;
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background:rgba(56,189,248,.14); border:1px solid rgba(56,189,248,.35);
+      font-weight:800;
+    }
+    .faq details{
+      border:1px solid var(--border);
+      border-radius:16px; padding:14px 16px; background:rgba(255,255,255,.04)
+    }
+    .faq summary{cursor:pointer; font-weight:800}
+    .faq p{margin:10px 0 0; color:var(--muted)}
+    footer{padding:26px 0 40px; color:var(--muted); font-size:14px}
+    .contact{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px
+    }
+    .pill{
+      border:1px solid var(--border);
+      padding:10px 12px; border-radius:999px;
+      background:rgba(255,255,255,.04);
+      font-weight:700;
+    }
+    .pill small{display:block; font-weight:600; color:var(--muted)}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      h1{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Legacy Path Logistics</span>
+    </div>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#how">How it Works</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+      <a class="btn secondary" href="#contact">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="card hero-left">
+      <div class="kicker">Freight Dispatch Services</div>
+      <h1>Stay loaded. Stay organized. Drive with confidence.</h1>
+      <p class="sub">
+        We help owner-operators and small fleets find solid loads, negotiate better rates,
+        and keep paperwork tight — so you can focus on driving.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Request Dispatch Support</a>
+        <a class="btn" href="#services">See Services</a>
+      </div>
+      <div class="badges">
+        <div class="badge">✅ Rate Negotiation</div>
+        <div class="badge">✅ Load Planning</div>
+        <div class="badge">✅ Carrier Setup + Docs</div>
+        <div class="badge">✅ Professional Communication</div>
+      </div>
+    </div>
+
+    <div class="card hero-right">
+      <div class="stat">
+        <strong>Fast response</strong>
+        <span>Quick load options & broker follow-up</span>
+      </div>
+      <div class="stat">
+        <strong>Reliable communication</strong>
+        <span>Professional dispatch updates & coordination</span>
+      </div>
+      <div class="stat">
+        <strong>Driver-first mindset</strong>
+        <span>We protect your time, rate, and schedule</span>
+      </div>
+      <div class="stat" style="border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10);">
+        <strong>Simple onboarding</strong>
+        <span>Get started in minutes</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="kicker">Services</div>
+    <div class="grid3">
+      <div class="card tile">
+        <h3>Load Search & Booking</h3>
+        <p>We find loads that match your lane, equipment, and schedule — and get you booked.</p>
+      </div>
+      <div class="card tile">
+        <h3>Rate Negotiation</h3>
+        <p>We negotiate with brokers so you’re not leaving money on the table.</p>
+      </div>
+      <div class="card tile">
+        <h3>Paperwork Support</h3>
+        <p>Carrier setups, confirmations, and organized docs so nothing gets missed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="kicker">How it works</div>
+    <div class="grid3 steps">
+      <div class="card step">
+        <h3>1) Quick Setup</h3>
+        <p>Send your MC/DOT + equipment type + preferred lanes.</p>
+      </div>
+      <div class="card step">
+        <h3>2) We Find & Negotiate</h3>
+        <p>We search, call brokers, negotiate, then send you top options.</p>
+      </div>
+      <div class="card step">
+        <h3>3) You Drive</h3>
+        <p>Once booked, we help keep everything on track — pickup to delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="kicker">Why choose Legacy Path Logistics</div>
+    <div class="grid2">
+      <div class="card tile">
+        <h3>Professional & consistent</h3>
+        <p>Clear communication, fast follow-ups, and organized dispatch support.</p>
+      </div>
+      <div class="card tile">
+        <h3>Simple, no-stress process</h3>
+        <p>No confusion — we keep it straightforward and driver-friendly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="kicker">FAQ</div>
+    <div class="grid2">
+      <details class="card">
+        <summary>Do you work with owner-operators?</summary>
+        <p>Yes — we primarily support owner-operators and small fleets.</p>
+      </details>
+      <details class="card">
+        <summary>What info do you need to start?</summary>
+        <p>MC/DOT, equipment type, home base, preferred lanes, and your weekly goals.</p>
+      </details>
+      <details class="card">
+        <summary>Do you negotiate rates?</summary>
+        <p>Yes. Negotiation is a core part of our dispatch support.</p>
+      </details>
+      <details class="card">
+        <summary>Can you help with paperwork?</summary>
+        <p>Yes — carrier setup packets, confirmations, and keeping documents organized.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card tile">
+      <div class="kicker">Contact</div>
+      <h2 style="margin:8px 0 4px;">Let’s get you dispatched.</h2>
+      <p style="margin:0;color:var(--muted)">Call/text/email and we’ll respond quickly.</p>
+
+      <!-- EDIT THESE 3 LINES WITH YOUR REAL INFO -->
+      <div class="contact">
+        <div class="pill">📞 Phone <small>+1 (XXX) XXX-XXXX</small></div>
+        <div class="pill">📧 Email <small>youremail@domain.com</small></div>
+        <div class="pill">📍 Service Area <small>Nationwide (US)</small></div>
+      </div>
+
+      <div class="cta" style="margin-top:14px;">
+        <a class="btn primary" href="mailto:youremail@domain.com?subject=Dispatch%20Support%20Request">Email Us</a>
+        <a class="btn" href="tel:+1XXXXXXXXXX">Call Now</a>
+      </div>
+
+      <p style="margin-top:14px; color:var(--muted); font-size:13px;">
+        *We do not provide legal or tax advice. Carrier remains responsible for compliance and operations.
+      </p>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    © <span id="year"></span> Legacy Path Logistics. All rights reserved.
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
+
+
