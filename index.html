@@ -5,164 +5,377 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Legacy Path Logistics | Dispatch Services</title>
   <meta name="description" content="Reliable freight dispatch services for owner-operators and small fleets. Stay loaded, stay organized." />
+
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#111b2e;
+      --bg:#070c16;
+      --bg2:#0b1220;
+      --card: rgba(17,27,46,.84);
       --muted:#9fb0d0;
       --text:#e9efff;
-      --accent:#38bdf8;
-      --accent2:#22c55e;
+
+      /* Premium palette */
+      --accent:#22d3ee;      /* teal */
+      --accentB:#3b82f6;     /* blue */
+      --accentG:#22c55e;     /* green */
+      --accentP:#a855f7;     /* purple pop */
+
       --border:rgba(255,255,255,.10);
-      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --border2:rgba(255,255,255,.14);
+      --shadow: 0 18px 48px rgba(0,0,0,.42);
+      --shadowSoft: 0 10px 30px rgba(0,0,0,.28);
       --radius: 18px;
       --max: 1100px;
+
+      --focus: rgba(34,211,238,.55);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;}
+    *{ box-sizing:border-box }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 400px at 20% 10%, rgba(56,189,248,.18), transparent),
-                  radial-gradient(900px 400px at 90% 30%, rgba(34,197,94,.14), transparent),
-                  var(--bg);
       color:var(--text);
       line-height:1.5;
+
+      background:
+        radial-gradient(900px 520px at 18% 10%, rgba(34,211,238,.18), transparent),
+        radial-gradient(900px 520px at 85% 22%, rgba(59,130,246,.18), transparent),
+        radial-gradient(900px 520px at 68% 90%, rgba(34,197,94,.12), transparent),
+        linear-gradient(180deg, var(--bg), var(--bg2));
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px;}
+
+    a{ color:inherit; text-decoration:none }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
+
+    /* ---------- Top success bar (Premium) ---------- */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display:none;
+      border-bottom:1px solid var(--border);
+      background: rgba(7,12,22,.70);
+      backdrop-filter: blur(10px);
+    }
+    .topbar.show{ display:block; }
+    .topbar .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 24px;
+    }
+    .topbar .msg{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+    }
+    .pill-ok{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(34,197,94,.35);
+      background: rgba(34,197,94,.12);
+      color: var(--text);
+      font-weight:800;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .topbar button{
+      cursor:pointer;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius:12px;
+      font-weight:800;
+    }
+    .topbar button:hover{ transform: translateY(-1px); }
+
+    /* ---------- Header ---------- */
     header{
-      position:sticky; top:0; backdrop-filter: blur(10px);
-      background:rgba(11,18,32,.70); border-bottom:1px solid var(--border);
+      position:sticky; top:0;
       z-index:20;
+      background: rgba(7,12,22,.55);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding:14px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:700;}
-    .dot{width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2))}
-    .links{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;}
-    .links a{color:var(--muted); font-weight:600; font-size:14px}
-    .links a:hover{color:var(--text)}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .brand img{
+      width:34px;
+      height:34px;
+      border-radius: 12px;
+      object-fit: cover;
+      border:1px solid var(--border);
+      box-shadow: var(--shadowSoft);
+      background: rgba(255,255,255,.06);
+    }
+    .brand .fallbackDot{
+      width:12px; height:12px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accentG));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.08);
+    }
+
+    .links{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+      align-items:center;
+    }
+    .links a{ color:var(--muted); font-weight:700; font-size:14px }
+    .links a:hover{ color:var(--text) }
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px; border-radius:14px; font-weight:700;
-      border:1px solid var(--border); background:rgba(255,255,255,.06);
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      will-change: transform;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
     }
     .btn.primary{
-      background:linear-gradient(135deg,var(--accent),#4f46e5);
       border:none;
-      box-shadow: 0 10px 30px rgba(56,189,248,.25);
+      background: linear-gradient(135deg, var(--accent), var(--accentB));
+      box-shadow: 0 14px 38px rgba(34,211,238,.18);
     }
     .btn.secondary{
-      background:rgba(34,197,94,.12);
+      background: rgba(34,197,94,.12);
       border:1px solid rgba(34,197,94,.35);
     }
 
+    /* ---------- Layout cards ---------- */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
     .hero{
-      padding:34px 0 18px;
-      display:grid; gap:18px;
+      padding: 34px 0 18px;
+      display:grid;
+      gap:18px;
       grid-template-columns: 1.2fr .8fr;
       align-items:stretch;
     }
-    .card{
-      background:rgba(17,27,46,.82);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    .hero-left{padding:28px;}
-    .kicker{color:var(--muted); font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:12px}
-    h1{margin:10px 0 10px; font-size:38px; line-height:1.1}
-    .sub{color:var(--muted); font-size:16px; margin:0 0 18px}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
-    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .badge{
-      font-size:13px; color:var(--muted);
-      border:1px solid var(--border); padding:8px 10px; border-radius:999px;
-      background:rgba(255,255,255,.04);
-    }
-    .hero-right{padding:22px; display:grid; gap:12px}
-    .stat{padding:14px; border-radius:16px; border:1px solid var(--border); background:rgba(255,255,255,.04)}
-    .stat strong{display:block; font-size:18px}
-    .stat span{color:var(--muted); font-size:13px}
 
-    section{padding:18px 0}
-    .grid3{display:grid; gap:14px; grid-template-columns:repeat(3,1fr)}
-    .grid2{display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
-    .tile{padding:18px}
-    .tile h3{margin:8px 0 6px}
-    .tile p{margin:0; color:var(--muted)}
-    .steps{counter-reset:step}
-    .step{padding:18px; position:relative}
-    .step:before{
-      counter-increment:step;
-      content:counter(step);
-      position:absolute; top:16px; right:16px;
-      width:34px; height:34px; border-radius:12px;
-      display:grid; place-items:center;
-      background:rgba(56,189,248,.14); border:1px solid rgba(56,189,248,.35);
-      font-weight:800;
-    }
-
-    .faq details{
-      border:1px solid var(--border);
-      border-radius:16px; padding:14px 16px; background:rgba(255,255,255,.04)
-    }
-    .faq summary{cursor:pointer; font-weight:800}
-    .faq p{margin:10px 0 0; color:var(--muted)}
-
-    footer{padding:26px 0 40px; color:var(--muted); font-size:14px}
-    .contact{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .pill{
-      border:1px solid var(--border);
-      padding:10px 12px; border-radius:999px;
-      background:rgba(255,255,255,.04);
-      font-weight:700;
-    }
-    .pill small{display:block; font-weight:600; color:var(--muted)}
-
-    /* Contact Form */
-    .form{ margin-top:14px; display:grid; gap:10px; }
-    .form label{ font-weight:800; font-size:13px; color:var(--muted); display:block; margin-bottom:6px; }
-    .form .row{ display:grid; gap:10px; grid-template-columns: 1fr 1fr; }
-    .input,.textarea{
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      outline:none;
-    }
-    .textarea{ min-height:110px; resize:vertical; }
-    .input:focus,.textarea:focus{
-      border-color: rgba(56,189,248,.55);
-      box-shadow: 0 0 0 4px rgba(56,189,248,.12);
-    }
-
-    /* Upgrade: hero background image */
+    /* Hero background image (premium) */
     .hero-left{
+      padding:28px;
       position: relative;
-      overflow: hidden;
+      overflow:hidden;
+      isolation:isolate;
     }
     .hero-left:before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(135deg, rgba(11,18,32,.92), rgba(11,18,32,.70)),
+        linear-gradient(135deg, rgba(7,12,22,.92), rgba(7,12,22,.66)),
         url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d5?auto=format&fit=crop&w=1600&q=60");
       background-size: cover;
       background-position: center;
-      filter: saturate(1.1);
-      z-index:0;
+      filter: saturate(1.12) contrast(1.02);
+      z-index:-2;
     }
-    .hero-left > *{ position:relative; z-index:1; }
+    .hero-left:after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(420px 240px at 15% 12%, rgba(34,211,238,.16), transparent),
+        radial-gradient(420px 240px at 88% 28%, rgba(59,130,246,.14), transparent);
+      z-index:-1;
+      pointer-events:none;
+    }
 
-    /* Floating actions */
+    .kicker{
+      color:var(--muted);
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    h1{
+      margin:10px 0 10px;
+      font-size:40px;
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      margin:0 0 18px;
+      max-width: 56ch;
+    }
+    .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
+    .badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }
+    .badge{
+      font-size:13px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .hero-right{ padding:22px; display:grid; gap:12px }
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .stat:hover{
+      transform: translateY(-2px);
+      border-color: rgba(34,211,238,.30);
+    }
+    .stat strong{ display:block; font-size:18px; letter-spacing:-.2px }
+    .stat span{ color:var(--muted); font-size:13px }
+
+    section{ padding:18px 0 }
+    .grid3{ display:grid; gap:14px; grid-template-columns:repeat(3,1fr) }
+    .grid2{ display:grid; gap:14px; grid-template-columns:repeat(2,1fr) }
+
+    .tile{
+      padding:18px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      background: rgba(17,27,46,.80);
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(59,130,246,.22);
+      background: rgba(17,27,46,.88);
+    }
+    .tile h3{ margin:8px 0 6px }
+    .tile p{ margin:0; color:var(--muted) }
+
+    /* Steps */
+    .steps{ counter-reset: step }
+    .step{ padding:18px; position:relative; }
+    .step:before{
+      counter-increment: step;
+      content: counter(step);
+      position:absolute;
+      top:16px; right:16px;
+      width:34px; height:34px;
+      border-radius:12px;
+      display:grid; place-items:center;
+      background: rgba(34,211,238,.14);
+      border: 1px solid rgba(34,211,238,.35);
+      font-weight: 1000;
+    }
+
+    /* FAQ */
+    .faq details{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px 16px;
+      background: rgba(255,255,255,.04);
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .faq details[open]{
+      border-color: rgba(34,211,238,.30);
+      background: rgba(255,255,255,.05);
+    }
+    .faq summary{ cursor:pointer; font-weight:1000; }
+    .faq p{ margin:10px 0 0; color:var(--muted) }
+
+    /* Contact */
+    .contact{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .pill{
+      border:1px solid var(--border);
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      font-weight: 900;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pill small{ display:block; font-weight:700; color:var(--muted) }
+
+    /* Contact form */
+    .form{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+    .form label{
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--muted);
+      display:block;
+      margin-bottom: 6px;
+    }
+    .form .row{
+      display:grid;
+      gap: 10px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .input, .textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      outline:none;
+      transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .input:focus, .textarea:focus{
+      border-color: var(--focus);
+      box-shadow: 0 0 0 4px rgba(34,211,238,.12);
+    }
+    .textarea{ min-height: 110px; resize: vertical; }
+
+    /* Inline form status (inside contact section) */
+    .form-status{
+      display:none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(34,197,94,.35);
+      background: rgba(34,197,94,.10);
+      color: var(--text);
+      font-weight: 900;
+    }
+    .form-status.show{ display:block; }
+    .form-status small{ display:block; margin-top:4px; color: var(--muted); font-weight:700; }
+
+    footer{
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Floating call/text */
     .float-actions{
       position: fixed;
       right: 18px;
@@ -173,51 +386,85 @@
       z-index: 999;
     }
     .float-actions a{
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
       padding: 12px 16px;
       border-radius: 999px;
-      border: 1px solid var(--border);
+      border:1px solid var(--border);
       background: rgba(17,27,46,.95);
-      box-shadow: var(--shadow);
-      font-weight: 800;
+      box-shadow: var(--shadowSoft);
+      font-weight: 1000;
       font-size: 14px;
-      text-decoration: none;
-      color: var(--text);
       white-space: nowrap;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .float-actions a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(34,211,238,.28);
     }
     .float-actions a span{
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
+      display:flex;
+      flex-direction:column;
+      line-height: 1.08;
     }
     .float-actions a span small{
-      font-size: 12px;
-      font-weight: 600;
+      font-size:12px;
+      font-weight: 800;
       color: var(--muted);
+      margin-top:2px;
     }
-    .float-actions a:hover{ transform: translateY(-1px); }
+
+    /* Scroll reveal (premium) */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce){
+      .btn, .tile, .stat, .float-actions a { transition:none !important; }
+      .reveal{ opacity:1; transform:none; }
+    }
 
     @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
-      h1{font-size:32px}
+      .hero{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      h1{ font-size: 32px; }
       .form .row{ grid-template-columns: 1fr; }
       .float-actions{ right: 12px; bottom: 12px; }
       .float-actions a{ padding: 10px 14px; font-size: 13px; }
     }
   </style>
 </head>
+
 <body>
+
+<!-- Top success bar (shows after form submit) -->
+<div class="topbar" id="topbar" role="status" aria-live="polite">
+  <div class="wrap">
+    <div class="msg">
+      <span class="pill-ok">✅ Message sent</span>
+      <span>Thanks! We’ll reach out shortly.</span>
+    </div>
+    <button type="button" id="topbarClose">Close</button>
+  </div>
+</div>
 
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <span class="dot"></span>
+      <!-- Logo: upload your logo file into the repo as "logo.png" -->
+      <img src="logo.png" alt="Legacy Path Logistics logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+      <span class="fallbackDot" style="display:none;"></span>
       <span>Legacy Path Logistics</span>
     </div>
+
     <nav class="links">
       <a href="#services">Services</a>
       <a href="#how">How it Works</a>
@@ -232,7 +479,7 @@
 <main class="wrap">
 
   <section class="hero">
-    <div class="card hero-left">
+    <div class="card hero-left reveal">
       <div class="kicker">Freight Dispatch Services</div>
       <h1>Stay loaded. Stay organized. Drive with confidence.</h1>
       <p class="sub">
@@ -251,7 +498,7 @@
       </div>
     </div>
 
-    <div class="card hero-right">
+    <div class="card hero-right reveal">
       <div class="stat">
         <strong>Fast response</strong>
         <span>Quick load options & broker follow-up</span>
@@ -271,7 +518,7 @@
     </div>
   </section>
 
-  <section id="services">
+  <section id="services" class="reveal">
     <div class="kicker">Services</div>
     <div class="grid3">
       <div class="card tile">
@@ -289,7 +536,7 @@
     </div>
   </section>
 
-  <section id="how">
+  <section id="how" class="reveal">
     <div class="kicker">How it works</div>
     <div class="grid3 steps">
       <div class="card step">
@@ -307,7 +554,7 @@
     </div>
   </section>
 
-  <section id="why">
+  <section id="why" class="reveal">
     <div class="kicker">Why choose Legacy Path Logistics</div>
     <div class="grid2">
       <div class="card tile">
@@ -321,28 +568,28 @@
     </div>
   </section>
 
-  <section id="reviews">
+  <section id="reviews" class="reveal">
     <div class="kicker">Trusted by drivers</div>
     <div class="grid3">
       <div class="card tile">
         <h3>“Fast communication.”</h3>
         <p>“They sent solid options quickly and stayed on top of broker follow-ups.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Owner-Operator</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Owner-Operator</p>
       </div>
       <div class="card tile">
         <h3>“Better planning.”</h3>
         <p>“Load planning helped me reduce deadhead and keep my week organized.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Small Fleet</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Small Fleet</p>
       </div>
       <div class="card tile">
         <h3>“Professional paperwork.”</h3>
         <p>“Carrier setup and rate confirmations were handled clean and on time.”</p>
-        <p style="margin-top:10px;color:var(--muted);font-weight:700;">— Dispatch Client</p>
+        <p style="margin-top:10px;color:var(--muted);font-weight:900;">— Dispatch Client</p>
       </div>
     </div>
   </section>
 
-  <section class="faq">
+  <section class="faq reveal">
     <div class="kicker">FAQ</div>
     <div class="grid2">
       <details class="card">
@@ -364,20 +611,26 @@
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="reveal">
     <div class="card tile">
       <div class="kicker">Contact</div>
       <h2 style="margin:8px 0 4px;">Let’s get you dispatched.</h2>
       <p style="margin:0;color:var(--muted)">Call/text/email and we’ll respond quickly.</p>
 
       <div class="contact">
-        <div class="pill">📞 Phone <small>+1 (910) 446-3125</small></div>
-        <div class="pill">📧 Email <small>legacypathlogistic.ops@gmail.com</small></div>
-        <div class="pill">📍 Service Area <small>Nationwide (US)</small></div>
+        <div class="pill">📞 <span>Phone <small>+1 (910) 446-3125</small></span></div>
+        <div class="pill">📧 <span>Email <small>legacypathlogistic.ops@gmail.com</small></span></div>
+        <div class="pill">📍 <span>Service Area <small>Nationwide (US)</small></span></div>
       </div>
 
-      <!-- Formspree Contact Form -->
-      <form class="form" action="https://formspree.io/f/xqeddaqa" method="POST">
+      <!-- ✅ 1) Premium success message (inline) + ✅ 2) no redirect (AJAX) -->
+      <div class="form-status" id="formStatus">
+        ✅ Message sent. We’ll reach out shortly.
+        <small>If you don’t hear back fast, call/text us using the buttons on the right.</small>
+      </div>
+
+      <!-- Formspree -->
+      <form class="form" id="leadForm" action="https://formspree.io/f/xqeddaqa" method="POST">
         <div class="row">
           <div>
             <label for="name">Name</label>
@@ -400,7 +653,7 @@
         </div>
 
         <input type="hidden" name="_subject" value="New Dispatch Lead — Legacy Path Logistics">
-        <button class="btn primary" type="submit">Send Message</button>
+        <button class="btn primary" type="submit" id="submitBtn">Send Message</button>
       </form>
 
       <div class="cta" style="margin-top:14px;">
@@ -420,27 +673,77 @@
 
 </main>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-<div class="float-actions">
+<!-- Floating Call/Text -->
+<div class="float-actions" aria-label="Quick actions">
   <a href="tel:+19104463125" aria-label="Call Legacy Path Logistics">
     📞
-    <span>
-      Call Now
-      <small>Fast response</small>
-    </span>
+    <span>Call Now <small>Fast response</small></span>
   </a>
-
   <a href="sms:+19104463125" aria-label="Text Legacy Path Logistics">
     💬
-    <span>
-      Text Us
-      <small>Send your lane</small>
-    </span>
+    <span>Text Us <small>Send your lane</small></span>
   </a>
 </div>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ✅ 3) Premium scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries){
+      if (e.isIntersecting) e.target.classList.add('show');
+    }
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ✅ 1) Success message + ✅ 2) Auto-scroll to top after submit + no redirect
+  const form = document.getElementById('leadForm');
+  const statusBox = document.getElementById('formStatus');
+  const topbar = document.getElementById('topbar');
+  const closeBtn = document.getElementById('topbarClose');
+  const submitBtn = document.getElementById('submitBtn');
+
+  closeBtn.addEventListener('click', () => topbar.classList.remove('show'));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try{
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!res.ok) throw new Error('Form submit failed');
+
+      // Show success UI
+      statusBox.classList.add('show');
+      topbar.classList.add('show');
+
+      // Clear form
+      form.reset();
+
+      // ✅ Auto-scroll to top (premium feel)
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch(err){
+      statusBox.classList.add('show');
+      statusBox.style.borderColor = 'rgba(168,85,247,.45)';
+      statusBox.style.background = 'rgba(168,85,247,.14)';
+      statusBox.textContent = '⚠️ Something went wrong. Please try again, or call/text us using the buttons.';
+    } finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>
 
 </body>
 </html>
